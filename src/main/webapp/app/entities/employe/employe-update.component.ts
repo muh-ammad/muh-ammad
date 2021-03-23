@@ -78,7 +78,6 @@ export class EmployeUpdateComponent implements OnInit {
       if (!employe.id) {
         const today = moment().startOf('day');
         employe.dateNaissance = today;
-        employe.lieuNaissance = today;
         employe.dateEmbauchement = today;
         employe.dateRetraite = today;
       }
@@ -121,7 +120,7 @@ export class EmployeUpdateComponent implements OnInit {
       nom: employe.nom,
       intituleEmploye: employe.intituleEmploye,
       dateNaissance: employe.dateNaissance ? employe.dateNaissance.format(DATE_TIME_FORMAT) : null,
-      lieuNaissance: employe.lieuNaissance ? employe.lieuNaissance.format(DATE_TIME_FORMAT) : null,
+      lieuNaissance: employe.lieuNaissance,
       numeroTelephone: employe.numeroTelephone,
       adresse: employe.adresse,
       photo: employe.photo,
@@ -194,9 +193,7 @@ export class EmployeUpdateComponent implements OnInit {
       dateNaissance: this.editForm.get(['dateNaissance'])!.value
         ? moment(this.editForm.get(['dateNaissance'])!.value, DATE_TIME_FORMAT)
         : undefined,
-      lieuNaissance: this.editForm.get(['lieuNaissance'])!.value
-        ? moment(this.editForm.get(['lieuNaissance'])!.value, DATE_TIME_FORMAT)
-        : undefined,
+      lieuNaissance: this.editForm.get(['lieuNaissance'])!.value,
       numeroTelephone: this.editForm.get(['numeroTelephone'])!.value,
       adresse: this.editForm.get(['adresse'])!.value,
       photoContentType: this.editForm.get(['photoContentType'])!.value,

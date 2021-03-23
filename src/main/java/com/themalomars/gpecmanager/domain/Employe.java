@@ -54,7 +54,7 @@ public class Employe implements Serializable {
 
     @NotNull
     @Column(name = "lieu_naissance", nullable = false)
-    private Instant lieuNaissance;
+    private String lieuNaissance;
 
     @NotNull
     @Column(name = "numero_telephone", nullable = false)
@@ -219,16 +219,16 @@ public class Employe implements Serializable {
         this.dateNaissance = dateNaissance;
     }
 
-    public Instant getLieuNaissance() {
+    public String getLieuNaissance() {
         return lieuNaissance;
     }
 
-    public Employe lieuNaissance(Instant lieuNaissance) {
+    public Employe lieuNaissance(String lieuNaissance) {
         this.lieuNaissance = lieuNaissance;
         return this;
     }
 
-    public void setLieuNaissance(Instant lieuNaissance) {
+    public void setLieuNaissance(String lieuNaissance) {
         this.lieuNaissance = lieuNaissance;
     }
 

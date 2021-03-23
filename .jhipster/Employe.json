@@ -35,7 +35,7 @@
     },
     {
       "fieldName": "lieuNaissance",
-      "fieldType": "Instant",
+      "fieldType": "String",
       "fieldValidateRules": [
         "required"
       ]

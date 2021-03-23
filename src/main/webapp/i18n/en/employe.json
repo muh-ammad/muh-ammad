@@ -5,7 +5,8 @@
         "title": "Employes",
         "createLabel": "Create a new Employe",
         "createOrEditLabel": "Create or edit a Employe",
-        "notFound": "No Employes found"
+        "notFound": "No Employes found",
+        "search":"Search for employees"
       },
       "created": "A new Employe is created with identifier {{ param }}",
       "updated": "A Employe is updated with identifier {{ param }}",

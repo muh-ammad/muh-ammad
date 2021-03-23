@@ -3,9 +3,10 @@
     "employe": {
       "home": {
         "title": "Employes",
-        "createLabel": "Créer un nouveau Employe",
-        "createOrEditLabel": "Créer ou éditer un Employe",
-        "notFound": "Aucun Employe trouvé"
+        "createLabel": "Nouvel Employe",
+        "createOrEditLabel": "Créer/éditer Employe",
+        "notFound": "Aucun Employe trouvé",
+        "search":"Rechercher un employé"
       },
       "created": "Un nouveau Employe a été créé avec l'identifiant {{ param }}",
       "updated": "Le Employe avec l'identifiant {{ param }} a été mis à jour",

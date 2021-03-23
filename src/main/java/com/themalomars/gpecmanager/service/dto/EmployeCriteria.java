@@ -113,7 +113,7 @@ public class EmployeCriteria implements Serializable, Criteria {
 
     private InstantFilter dateNaissance;
 
-    private InstantFilter lieuNaissance;
+    private StringFilter lieuNaissance;
 
     private StringFilter numeroTelephone;
 
@@ -244,11 +244,11 @@ public class EmployeCriteria implements Serializable, Criteria {
         this.dateNaissance = dateNaissance;
     }
 
-    public InstantFilter getLieuNaissance() {
+    public StringFilter getLieuNaissance() {
         return lieuNaissance;
     }
 
-    public void setLieuNaissance(InstantFilter lieuNaissance) {
+    public void setLieuNaissance(StringFilter lieuNaissance) {
         this.lieuNaissance = lieuNaissance;
     }
 

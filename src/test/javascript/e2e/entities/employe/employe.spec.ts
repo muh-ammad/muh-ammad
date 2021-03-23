@@ -50,7 +50,7 @@ describe('Employe e2e test', () => {
       employeUpdatePage.setNomInput('nom'),
       employeUpdatePage.setIntituleEmployeInput('intituleEmploye'),
       employeUpdatePage.setDateNaissanceInput('01/01/2001' + protractor.Key.TAB + '02:30AM'),
-      employeUpdatePage.setLieuNaissanceInput('01/01/2001' + protractor.Key.TAB + '02:30AM'),
+      employeUpdatePage.setLieuNaissanceInput('lieuNaissance'),
       employeUpdatePage.setNumeroTelephoneInput('numeroTelephone'),
       employeUpdatePage.setAdresseInput('adresse'),
       employeUpdatePage.setPhotoInput(absolutePath),
@@ -81,9 +81,9 @@ describe('Employe e2e test', () => {
       '2001-01-01T02:30',
       'Expected dateNaissance value to be equals to 2000-12-31'
     );
-    expect(await employeUpdatePage.getLieuNaissanceInput()).to.contain(
-      '2001-01-01T02:30',
-      'Expected lieuNaissance value to be equals to 2000-12-31'
+    expect(await employeUpdatePage.getLieuNaissanceInput()).to.eq(
+      'lieuNaissance',
+      'Expected LieuNaissance value to be equals to lieuNaissance'
     );
     expect(await employeUpdatePage.getNumeroTelephoneInput()).to.eq(
       'numeroTelephone',

@@ -4,7 +4,7 @@ entity Employe {
 	nom String required,
     intituleEmploye String,
     dateNaissance Instant required,
-    lieuNaissance Instant required,
+    lieuNaissance String required,
     numeroTelephone String required,
     adresse String,
     photo ImageBlob,

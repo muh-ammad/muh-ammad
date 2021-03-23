@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
 import { Subscription, combineLatest } from 'rxjs';
@@ -11,23 +11,11 @@ import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { EmployeService } from './employe.service';
 import { EmployeDeleteDialogComponent } from './employe-delete-dialog.component';
 
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-
-
 @Component({
   selector: 'jhi-employe',
   templateUrl: './employe.component.html',
-  styleUrls: ['./employe.scss']
 })
-export class EmployeComponent implements AfterViewInit, OnInit, OnDestroy {
-
-  displayedColumns: string[] = ['matricule', 'intituleEmploye', 'dateNaissance', 'numeroCni', 'dateEmbauchement', 'actions'];
-  dataSource = new MatTableDataSource<IEmploye>();
-  @ViewChild(MatPaginator)  paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-
+export class EmployeComponent implements OnInit, OnDestroy {
   employes?: IEmploye[];
   eventSubscriber?: Subscription;
   totalItems = 0;
@@ -44,9 +32,7 @@ export class EmployeComponent implements AfterViewInit, OnInit, OnDestroy {
     protected router: Router,
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal
-  ) {
-  // this.dataSource = new MatTableDataSource(this.employes);
-  }
+  ) {}
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     const pageToLoad: number = page || this.page || 1;
@@ -55,7 +41,7 @@ export class EmployeComponent implements AfterViewInit, OnInit, OnDestroy {
       .query({
         page: pageToLoad - 1,
         size: this.itemsPerPage,
-        // sort: this.sort(),
+        sort: this.sort(),
       })
       .subscribe(
         (res: HttpResponse<IEmploye[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),
@@ -111,13 +97,13 @@ export class EmployeComponent implements AfterViewInit, OnInit, OnDestroy {
     modalRef.componentInstance.employe = employe;
   }
 
-/*   sort(): string[] {
+  sort(): string[] {
     const result = [this.predicate + ',' + (this.ascending ? 'asc' : 'desc')];
     if (this.predicate !== 'id') {
       result.push('id');
     }
     return result;
-  } */
+  }
 
   protected onSuccess(data: IEmploye[] | null, headers: HttpHeaders, page: number, navigate: boolean): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
@@ -132,7 +118,6 @@ export class EmployeComponent implements AfterViewInit, OnInit, OnDestroy {
       });
     }
     this.employes = data || [];
-    this.dataSource = new MatTableDataSource(this.employes);
     this.ngbPaginationPage = this.page;
   }
 
@@ -140,20 +125,7 @@ export class EmployeComponent implements AfterViewInit, OnInit, OnDestroy {
     this.ngbPaginationPage = this.page ?? 1;
   }
 
-  ngAfterViewInit(): void {
-    console.log('matPaginator', this.paginator);
-    console.log('matSort', this.sort);    
-    this.dataSource.paginator = this.paginator;       
-    this.dataSource.sort = this.sort;
-  }
+  search(): void{
 
-  applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
   }
 }
-

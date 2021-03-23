@@ -70,8 +70,8 @@ public class EmployeResourceIT {
     private static final Instant DEFAULT_DATE_NAISSANCE = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_DATE_NAISSANCE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
-    private static final Instant DEFAULT_LIEU_NAISSANCE = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_LIEU_NAISSANCE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final String DEFAULT_LIEU_NAISSANCE = "AAAAAAAAAA";
+    private static final String UPDATED_LIEU_NAISSANCE = "BBBBBBBBBB";
 
     private static final String DEFAULT_NUMERO_TELEPHONE = "AAAAAAAAAA";
     private static final String UPDATED_NUMERO_TELEPHONE = "BBBBBBBBBB";
@@ -396,7 +396,7 @@ public class EmployeResourceIT {
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].intituleEmploye").value(hasItem(DEFAULT_INTITULE_EMPLOYE)))
             .andExpect(jsonPath("$.[*].dateNaissance").value(hasItem(DEFAULT_DATE_NAISSANCE.toString())))
-            .andExpect(jsonPath("$.[*].lieuNaissance").value(hasItem(DEFAULT_LIEU_NAISSANCE.toString())))
+            .andExpect(jsonPath("$.[*].lieuNaissance").value(hasItem(DEFAULT_LIEU_NAISSANCE)))
             .andExpect(jsonPath("$.[*].numeroTelephone").value(hasItem(DEFAULT_NUMERO_TELEPHONE)))
             .andExpect(jsonPath("$.[*].adresse").value(hasItem(DEFAULT_ADRESSE)))
             .andExpect(jsonPath("$.[*].photoContentType").value(hasItem(DEFAULT_PHOTO_CONTENT_TYPE)))
@@ -450,7 +450,7 @@ public class EmployeResourceIT {
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM))
             .andExpect(jsonPath("$.intituleEmploye").value(DEFAULT_INTITULE_EMPLOYE))
             .andExpect(jsonPath("$.dateNaissance").value(DEFAULT_DATE_NAISSANCE.toString()))
-            .andExpect(jsonPath("$.lieuNaissance").value(DEFAULT_LIEU_NAISSANCE.toString()))
+            .andExpect(jsonPath("$.lieuNaissance").value(DEFAULT_LIEU_NAISSANCE))
             .andExpect(jsonPath("$.numeroTelephone").value(DEFAULT_NUMERO_TELEPHONE))
             .andExpect(jsonPath("$.adresse").value(DEFAULT_ADRESSE))
             .andExpect(jsonPath("$.photoContentType").value(DEFAULT_PHOTO_CONTENT_TYPE))
@@ -903,6 +903,32 @@ public class EmployeResourceIT {
         // Get all the employeList where lieuNaissance is null
         defaultEmployeShouldNotBeFound("lieuNaissance.specified=false");
     }
+                @Test
+    @Transactional
+    public void getAllEmployesByLieuNaissanceContainsSomething() throws Exception {
+        // Initialize the database
+        employeRepository.saveAndFlush(employe);
+
+        // Get all the employeList where lieuNaissance contains DEFAULT_LIEU_NAISSANCE
+        defaultEmployeShouldBeFound("lieuNaissance.contains=" + DEFAULT_LIEU_NAISSANCE);
+
+        // Get all the employeList where lieuNaissance contains UPDATED_LIEU_NAISSANCE
+        defaultEmployeShouldNotBeFound("lieuNaissance.contains=" + UPDATED_LIEU_NAISSANCE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllEmployesByLieuNaissanceNotContainsSomething() throws Exception {
+        // Initialize the database
+        employeRepository.saveAndFlush(employe);
+
+        // Get all the employeList where lieuNaissance does not contain DEFAULT_LIEU_NAISSANCE
+        defaultEmployeShouldNotBeFound("lieuNaissance.doesNotContain=" + DEFAULT_LIEU_NAISSANCE);
+
+        // Get all the employeList where lieuNaissance does not contain UPDATED_LIEU_NAISSANCE
+        defaultEmployeShouldBeFound("lieuNaissance.doesNotContain=" + UPDATED_LIEU_NAISSANCE);
+    }
+
 
     @Test
     @Transactional
@@ -1961,7 +1987,7 @@ public class EmployeResourceIT {
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].intituleEmploye").value(hasItem(DEFAULT_INTITULE_EMPLOYE)))
             .andExpect(jsonPath("$.[*].dateNaissance").value(hasItem(DEFAULT_DATE_NAISSANCE.toString())))
-            .andExpect(jsonPath("$.[*].lieuNaissance").value(hasItem(DEFAULT_LIEU_NAISSANCE.toString())))
+            .andExpect(jsonPath("$.[*].lieuNaissance").value(hasItem(DEFAULT_LIEU_NAISSANCE)))
             .andExpect(jsonPath("$.[*].numeroTelephone").value(hasItem(DEFAULT_NUMERO_TELEPHONE)))
             .andExpect(jsonPath("$.[*].adresse").value(hasItem(DEFAULT_ADRESSE)))
             .andExpect(jsonPath("$.[*].photoContentType").value(hasItem(DEFAULT_PHOTO_CONTENT_TYPE)))

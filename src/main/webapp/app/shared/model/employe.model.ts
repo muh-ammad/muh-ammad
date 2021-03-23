@@ -19,7 +19,7 @@ export interface IEmploye {
   nom?: string;
   intituleEmploye?: string;
   dateNaissance?: Moment;
-  lieuNaissance?: Moment;
+  lieuNaissance?: string;
   numeroTelephone?: string;
   adresse?: string;
   photoContentType?: string;
@@ -53,7 +53,7 @@ export class Employe implements IEmploye {
     public nom?: string,
     public intituleEmploye?: string,
     public dateNaissance?: Moment,
-    public lieuNaissance?: Moment,
+    public lieuNaissance?: string,
     public numeroTelephone?: string,
     public adresse?: string,
     public photoContentType?: string,

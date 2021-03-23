@@ -51,7 +51,6 @@ export class EmployeService {
   protected convertDateFromClient(employe: IEmploye): IEmploye {
     const copy: IEmploye = Object.assign({}, employe, {
       dateNaissance: employe.dateNaissance && employe.dateNaissance.isValid() ? employe.dateNaissance.toJSON() : undefined,
-      lieuNaissance: employe.lieuNaissance && employe.lieuNaissance.isValid() ? employe.lieuNaissance.toJSON() : undefined,
       dateEmbauchement: employe.dateEmbauchement && employe.dateEmbauchement.isValid() ? employe.dateEmbauchement.toJSON() : undefined,
       dateRetraite: employe.dateRetraite && employe.dateRetraite.isValid() ? employe.dateRetraite.toJSON() : undefined,
     });
@@ -61,7 +60,6 @@ export class EmployeService {
   protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
     if (res.body) {
       res.body.dateNaissance = res.body.dateNaissance ? moment(res.body.dateNaissance) : undefined;
-      res.body.lieuNaissance = res.body.lieuNaissance ? moment(res.body.lieuNaissance) : undefined;
       res.body.dateEmbauchement = res.body.dateEmbauchement ? moment(res.body.dateEmbauchement) : undefined;
       res.body.dateRetraite = res.body.dateRetraite ? moment(res.body.dateRetraite) : undefined;
     }
@@ -72,7 +70,6 @@ export class EmployeService {
     if (res.body) {
       res.body.forEach((employe: IEmploye) => {
         employe.dateNaissance = employe.dateNaissance ? moment(employe.dateNaissance) : undefined;
-        employe.lieuNaissance = employe.lieuNaissance ? moment(employe.lieuNaissance) : undefined;
         employe.dateEmbauchement = employe.dateEmbauchement ? moment(employe.dateEmbauchement) : undefined;
         employe.dateRetraite = employe.dateRetraite ? moment(employe.dateRetraite) : undefined;
       });

@@ -101,7 +101,7 @@ public class EmployeQueryService extends QueryService<Employe> {
                 specification = specification.and(buildRangeSpecification(criteria.getDateNaissance(), Employe_.dateNaissance));
             }
             if (criteria.getLieuNaissance() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getLieuNaissance(), Employe_.lieuNaissance));
+                specification = specification.and(buildStringSpecification(criteria.getLieuNaissance(), Employe_.lieuNaissance));
             }
             if (criteria.getNumeroTelephone() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getNumeroTelephone(), Employe_.numeroTelephone));

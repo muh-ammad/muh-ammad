@@ -35,7 +35,7 @@ describe('Service Tests', () => {
         'AAAAAAA',
         'AAAAAAA',
         currentDate,
-        currentDate,
+        'AAAAAAA',
         'AAAAAAA',
         'AAAAAAA',
         'image/png',
@@ -59,7 +59,6 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             dateNaissance: currentDate.format(DATE_TIME_FORMAT),
-            lieuNaissance: currentDate.format(DATE_TIME_FORMAT),
             dateEmbauchement: currentDate.format(DATE_TIME_FORMAT),
             dateRetraite: currentDate.format(DATE_TIME_FORMAT),
           },
@@ -78,7 +77,6 @@ describe('Service Tests', () => {
           {
             id: 0,
             dateNaissance: currentDate.format(DATE_TIME_FORMAT),
-            lieuNaissance: currentDate.format(DATE_TIME_FORMAT),
             dateEmbauchement: currentDate.format(DATE_TIME_FORMAT),
             dateRetraite: currentDate.format(DATE_TIME_FORMAT),
           },
@@ -88,7 +86,6 @@ describe('Service Tests', () => {
         const expected = Object.assign(
           {
             dateNaissance: currentDate,
-            lieuNaissance: currentDate,
             dateEmbauchement: currentDate,
             dateRetraite: currentDate,
           },
@@ -110,7 +107,7 @@ describe('Service Tests', () => {
             nom: 'BBBBBB',
             intituleEmploye: 'BBBBBB',
             dateNaissance: currentDate.format(DATE_TIME_FORMAT),
-            lieuNaissance: currentDate.format(DATE_TIME_FORMAT),
+            lieuNaissance: 'BBBBBB',
             numeroTelephone: 'BBBBBB',
             adresse: 'BBBBBB',
             photo: 'BBBBBB',
@@ -132,7 +129,6 @@ describe('Service Tests', () => {
         const expected = Object.assign(
           {
             dateNaissance: currentDate,
-            lieuNaissance: currentDate,
             dateEmbauchement: currentDate,
             dateRetraite: currentDate,
           },
@@ -154,7 +150,7 @@ describe('Service Tests', () => {
             nom: 'BBBBBB',
             intituleEmploye: 'BBBBBB',
             dateNaissance: currentDate.format(DATE_TIME_FORMAT),
-            lieuNaissance: currentDate.format(DATE_TIME_FORMAT),
+            lieuNaissance: 'BBBBBB',
             numeroTelephone: 'BBBBBB',
             adresse: 'BBBBBB',
             photo: 'BBBBBB',
@@ -176,7 +172,6 @@ describe('Service Tests', () => {
         const expected = Object.assign(
           {
             dateNaissance: currentDate,
-            lieuNaissance: currentDate,
             dateEmbauchement: currentDate,
             dateRetraite: currentDate,
           },

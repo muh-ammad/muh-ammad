@@ -31,7 +31,7 @@
             <column name="date_naissance" type="datetime">
                 <constraints nullable="false" />
             </column>
-            <column name="lieu_naissance" type="datetime">
+            <column name="lieu_naissance" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
             <column name="numero_telephone" type="varchar(255)">
@@ -85,7 +85,6 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
         <dropDefaultValue tableName="employe" columnName="date_naissance" columnDataType="datetime"/>
-        <dropDefaultValue tableName="employe" columnName="lieu_naissance" columnDataType="datetime"/>
         <dropDefaultValue tableName="employe" columnName="date_embauchement" columnDataType="datetime"/>
         <dropDefaultValue tableName="employe" columnName="date_retraite" columnDataType="datetime"/>
     </changeSet>
@@ -136,7 +135,7 @@
             <column name="nom" type="string"/>
             <column name="intitule_employe" type="string"/>
             <column name="date_naissance" type="datetime"/>
-            <column name="lieu_naissance" type="datetime"/>
+            <column name="lieu_naissance" type="string"/>
             <column name="numero_telephone" type="string"/>
             <column name="adresse" type="string"/>
             <column name="photo" type="blob"/>
