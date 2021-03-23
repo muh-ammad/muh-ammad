@@ -1,0 +1,94 @@
+@import '~bootstrap/scss/functions';
+@import '~bootswatch/dist/materia/variables';
+@import '~bootstrap/scss/variables';
+
+.sidebar-card {
+    max-width: 400px;
+  }
+  
+  .sidebar-header-image {
+    background-image: url('../../../content/images/logo-hpd.png');
+    background-size: cover;
+  }
+  .profile-card{
+      text-align: center;
+      padding: 0 20px 20px 20px;
+      img{
+          width: 100px;
+          height: 100px;
+          object-fit: cover;
+          border-radius: 50%;
+      }
+  }
+  .content-container .side-menu {
+    overflow-y: none;
+    z-index: 100000;
+    position: fixed;
+    width: 60px;
+    height: 100%;
+    -webkit-transition: all .25s;
+    transition: all .25s;
+}
+
+.app-container .content-container .side-menu .navbar {
+  border: none;
+  padding-left: 0;
+}
+.app-container .content-container .side-menu .navbar-header {
+  width: 100%;
+  border-bottom: 0 solid #e7e7e7;
+}
+
+.flat-blue .side-menu .navbar-header {
+  background-color: #fff;
+  margin-bottom: 4px;
+}
+
+.flat-blue .side-menu .navbar-header {
+  background-color: #fff;
+  margin-bottom: 4px;
+}
+
+.app-container .content-container .side-menu .navbar-header {
+  width: 100%;
+  border-bottom: 0 solid #e7e7e7;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  padding: 60px 50px 0;
+  box-shadow: inset -1px 0 0 rgb(0 0 0 / 10%);
+}
+
+.nav {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.flex-column {
+  -ms-flex-direction: column!important;
+  flex-direction: column!important;
+}
+
+.sidebar-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+}

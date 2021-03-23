@@ -1,0 +1,15 @@
+{
+  "gpecmanagerApp": {
+    "GroupeSanguin": {
+      "null": "",
+      "AP": "AP",
+      "AM": "AM",
+      "BP": "BP",
+      "BM": "BM",
+      "OP": "OP",
+      "OM": "OM",
+      "ABP": "ABP",
+      "ABM": "ABM"
+    }
+  }
+}

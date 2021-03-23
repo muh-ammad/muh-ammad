@@ -1,0 +1,9 @@
+export const enum NiveauEtude {
+  AUCUN = 'AUCUN',
+
+  PRIMAIRE = 'PRIMAIRE',
+
+  SECONDAIRE = 'SECONDAIRE',
+
+  UNIVERSITAIRE = 'UNIVERSITAIRE',
+}

@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-diplome-heading" jhiTranslate="gpecmanagerApp.diplome.home.createOrEditLabel">Create or edit a Diplome</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.diplome.libelleDiplome" for="field_libelleDiplome">Libelle Diplome</label>
+                    <input type="text" class="form-control" name="libelleDiplome" id="field_libelleDiplome"
+                           formControlName="libelleDiplome"/>
+                    <div *ngIf="editForm.get('libelleDiplome')!.invalid && (editForm.get('libelleDiplome')!.dirty || editForm.get('libelleDiplome')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('libelleDiplome')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.diplome.anneeDiplome" for="field_anneeDiplome">Annee Diplome</label>
+                    <div class="d-flex">
+                        <input id="field_anneeDiplome" type="datetime-local" class="form-control" name="anneeDiplome" formControlName="anneeDiplome" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.diplome.employe" for="field_employe">Employe</label>
+                    <select class="form-control" id="field_employe" name="employe" formControlName="employe">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="employeOption.id === editForm.get('employe')!.value?.id ? editForm.get('employe')!.value : employeOption" *ngFor="let employeOption of employes; trackBy: trackById">{{ employeOption.intituleEmploye }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

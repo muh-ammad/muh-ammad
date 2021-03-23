@@ -1,0 +1,49 @@
+{
+  "gpecmanagerApp": {
+    "employe": {
+      "home": {
+        "title": "Employes",
+        "createLabel": "Create a new Employe",
+        "createOrEditLabel": "Create or edit a Employe",
+        "notFound": "No Employes found"
+      },
+      "created": "A new Employe is created with identifier {{ param }}",
+      "updated": "A Employe is updated with identifier {{ param }}",
+      "deleted": "A Employe is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Employe {{ id }}?"
+      },
+      "detail": {
+        "title": "Employe"
+      },
+      "matricule": "Matricule",
+      "prenoms": "Prenoms",
+      "nom": "Nom",
+      "intituleEmploye": "Intitule Employe",
+      "dateNaissance": "Date Naissance",
+      "lieuNaissance": "Lieu Naissance",
+      "numeroTelephone": "Numero Telephone",
+      "adresse": "Adresse",
+      "photo": "Photo",
+      "email": "Email",
+      "dateEmbauchement": "Date Embauchement",
+      "dateRetraite": "Date Retraite",
+      "age": "Age",
+      "numeroCni": "Numero Cni",
+      "numeroIpres": "Numero Ipres",
+      "numeroCss": "Numero Css",
+      "groupeSanguin": "Groupe Sanguin",
+      "situationMatrimonial": "Situation Matrimonial",
+      "sexe": "Sexe",
+      "disponibilite": "Disponibilite",
+      "contrat": "Contrat",
+      "diplome": "Diplome",
+      "fonction": "Fonction",
+      "membreFamille": "Membre Famille",
+      "distinction": "Distinction",
+      "operationExterieur": "Operation Exterieur",
+      "service": "Service",
+      "serviceFrequente": "Service Frequente"
+    }
+  }
+}

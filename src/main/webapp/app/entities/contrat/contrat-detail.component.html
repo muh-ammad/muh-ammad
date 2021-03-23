@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="contrat">
+            <h2><span jhiTranslate="gpecmanagerApp.contrat.detail.title">Contrat</span> {{ contrat.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gpecmanagerApp.contrat.numeroContrat">Numero Contrat</span></dt>
+                <dd>
+                    <span>{{ contrat.numeroContrat }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.contrat.libelleContrat">Libelle Contrat</span></dt>
+                <dd>
+                    <span>{{ contrat.libelleContrat }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.contrat.dateDebut">Date Debut</span></dt>
+                <dd>
+                    <span>{{ contrat.dateDebut }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.contrat.dateFin">Date Fin</span></dt>
+                <dd>
+                    <span>{{ contrat.dateFin }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.contrat.niveauEtude">Niveau Etude</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'gpecmanagerApp.NiveauEtude.' + contrat.niveauEtude }}">{{ contrat.niveauEtude }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.contrat.typeContrat">Type Contrat</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'gpecmanagerApp.TypeContrat.' + contrat.typeContrat }}">{{ contrat.typeContrat }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/contrat', contrat.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

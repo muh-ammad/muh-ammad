@@ -1,0 +1,24 @@
+{
+  "gpecmanagerApp": {
+    "serviceFrequente": {
+      "home": {
+        "title": "ServiceFrequentes",
+        "createLabel": "Créer un nouveau Service Frequente",
+        "createOrEditLabel": "Créer ou éditer un Service Frequente",
+        "notFound": "Aucun Service Frequente trouvé"
+      },
+      "created": "Un nouveau Service Frequente a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Service Frequente avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Service Frequente avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Service Frequente {{ id }} ?"
+      },
+      "detail": {
+        "title": "Service Frequente"
+      },
+      "codeService": "Code Service",
+      "libelleService": "Libelle Service",
+      "employe": "Employe"
+    }
+  }
+}

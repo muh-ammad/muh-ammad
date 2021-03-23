@@ -1,0 +1,10 @@
+{
+  "gpecmanagerApp": {
+    "TypeContrat": {
+      "null": "",
+      "PRESTATAIRE": "PRESTATAIRE",
+      "CDD": "CDD",
+      "CDI": "CDI"
+    }
+  }
+}

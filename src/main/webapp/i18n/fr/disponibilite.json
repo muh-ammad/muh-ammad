@@ -1,0 +1,11 @@
+{
+  "gpecmanagerApp": {
+    "Disponibilite": {
+      "null": "",
+      "ENCOURS": "ENCOURS",
+      "ARRETE": "ARRETE",
+      "CONGES": "CONGES",
+      "RETRAITE": "RETRAITE"
+    }
+  }
+}

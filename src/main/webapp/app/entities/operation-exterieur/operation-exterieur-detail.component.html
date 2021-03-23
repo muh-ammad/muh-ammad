@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="operationExterieur">
+            <h2><span jhiTranslate="gpecmanagerApp.operationExterieur.detail.title">Operation Exterieur</span> {{ operationExterieur.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gpecmanagerApp.operationExterieur.lieuOpex">Lieu Opex</span></dt>
+                <dd>
+                    <span>{{ operationExterieur.lieuOpex }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.operationExterieur.anneeOpex">Annee Opex</span></dt>
+                <dd>
+                    <span>{{ operationExterieur.anneeOpex }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.operationExterieur.employe">Employe</span></dt>
+                <dd>
+                    <div *ngIf="operationExterieur.employe">
+                        <a [routerLink]="['/employe', operationExterieur.employe?.id, 'view']">{{ operationExterieur.employe?.intituleEmploye }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/operation-exterieur', operationExterieur.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

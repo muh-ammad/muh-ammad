@@ -1,0 +1,36 @@
+{
+  "name": "Diplome",
+  "fields": [
+    {
+      "fieldName": "libelleDiplome",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "anneeDiplome",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "employe",
+      "otherEntityRelationshipName": "diplome",
+      "relationshipName": "employe",
+      "otherEntityField": "intituleEmploye"
+    }
+  ],
+  "changelogDate": "20210315140507",
+  "entityTableName": "diplome",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

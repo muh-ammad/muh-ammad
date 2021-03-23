@@ -1,0 +1,25 @@
+{
+  "gpecmanagerApp": {
+    "serviceAffecte": {
+      "home": {
+        "title": "Service Affectes",
+        "createLabel": "Create a new Service Affecte",
+        "createOrEditLabel": "Create or edit a Service Affecte",
+        "notFound": "No Service Affectes found"
+      },
+      "created": "A new Service Affecte is created with identifier {{ param }}",
+      "updated": "A Service Affecte is updated with identifier {{ param }}",
+      "deleted": "A Service Affecte is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Service Affecte {{ id }}?"
+      },
+      "detail": {
+        "title": "Service Affecte"
+      },
+      "codeService": "Code Service",
+      "libelleService": "Libelle Service",
+      "secteurActivite": "Secteur Activite",
+      "employe": "Employe"
+    }
+  }
+}

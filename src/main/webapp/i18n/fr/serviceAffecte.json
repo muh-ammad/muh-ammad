@@ -1,0 +1,25 @@
+{
+  "gpecmanagerApp": {
+    "serviceAffecte": {
+      "home": {
+        "title": "ServiceAffectes",
+        "createLabel": "Créer un nouveau Service Affecte",
+        "createOrEditLabel": "Créer ou éditer un Service Affecte",
+        "notFound": "Aucun Service Affecte trouvé"
+      },
+      "created": "Un nouveau Service Affecte a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Service Affecte avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Service Affecte avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Service Affecte {{ id }} ?"
+      },
+      "detail": {
+        "title": "Service Affecte"
+      },
+      "codeService": "Code Service",
+      "libelleService": "Libelle Service",
+      "secteurActivite": "Secteur Activite",
+      "employe": "Employe"
+    }
+  }
+}

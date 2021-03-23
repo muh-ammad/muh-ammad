@@ -1,0 +1,38 @@
+{
+  "name": "Fonction",
+  "fields": [
+    {
+      "fieldName": "libelleFonction",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "specialite",
+      "otherEntityRelationshipName": "fonction",
+      "relationshipName": "specialite"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "employe",
+      "otherEntityRelationshipName": "fonction",
+      "relationshipName": "employe",
+      "otherEntityField": "intituleEmploye"
+    }
+  ],
+  "changelogDate": "20210315135807",
+  "entityTableName": "fonction",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

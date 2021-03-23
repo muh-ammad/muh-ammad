@@ -1,0 +1,24 @@
+{
+  "name": "SecteurActivite",
+  "fields": [
+    {
+      "fieldName": "libelleActivite",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210315140707",
+  "entityTableName": "secteur_activite",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

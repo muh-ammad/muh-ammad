@@ -1,0 +1,39 @@
+{
+  "name": "Opex",
+  "fields": [
+    {
+      "fieldName": "lieuOpex",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "anneeOpex",
+      "fieldType": "Instant",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "employe",
+      "otherEntityRelationshipName": "opex",
+      "relationshipName": "employe",
+      "otherEntityField": "intituleEmploye"
+    }
+  ],
+  "changelogDate": "20210315140307",
+  "entityTableName": "opex",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

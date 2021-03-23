@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="membreFamille">
+            <h2><span jhiTranslate="gpecmanagerApp.membreFamille.detail.title">Membre Famille</span> {{ membreFamille.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gpecmanagerApp.membreFamille.prenoms">Prenoms</span></dt>
+                <dd>
+                    <span>{{ membreFamille.prenoms }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.membreFamille.nom">Nom</span></dt>
+                <dd>
+                    <span>{{ membreFamille.nom }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.membreFamille.dateNaissance">Date Naissance</span></dt>
+                <dd>
+                    <span>{{ membreFamille.dateNaissance }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.membreFamille.lieuNaissance">Lieu Naissance</span></dt>
+                <dd>
+                    <span>{{ membreFamille.lieuNaissance }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.membreFamille.epoux">Epoux</span></dt>
+                <dd>
+                    <span>{{ membreFamille.epoux }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.membreFamille.epouse">Epouse</span></dt>
+                <dd>
+                    <span>{{ membreFamille.epouse }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.membreFamille.enfant">Enfant</span></dt>
+                <dd>
+                    <span>{{ membreFamille.enfant }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.membreFamille.employe">Employe</span></dt>
+                <dd>
+                    <div *ngIf="membreFamille.employe">
+                        <a [routerLink]="['/employe', membreFamille.employe?.id, 'view']">{{ membreFamille.employe?.intituleEmploye }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/membre-famille', membreFamille.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

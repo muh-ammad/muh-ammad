@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="service">
+            <h2><span jhiTranslate="gpecmanagerApp.service.detail.title">Service</span> {{ service.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gpecmanagerApp.service.codeService">Code Service</span></dt>
+                <dd>
+                    <span>{{ service.codeService }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.service.libelleService">Libelle Service</span></dt>
+                <dd>
+                    <span>{{ service.libelleService }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.service.secteurActivite">Secteur Activite</span></dt>
+                <dd>
+                    <div *ngIf="service.secteurActivite">
+                        <a [routerLink]="['/secteur-activite', service.secteurActivite?.id, 'view']">{{ service.secteurActivite?.libelleActivite }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/service', service.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

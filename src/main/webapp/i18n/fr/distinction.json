@@ -1,0 +1,23 @@
+{
+  "gpecmanagerApp": {
+    "distinction": {
+      "home": {
+        "title": "Distinctions",
+        "createLabel": "Créer un nouveau Distinction",
+        "createOrEditLabel": "Créer ou éditer un Distinction",
+        "notFound": "Aucun Distinction trouvé"
+      },
+      "created": "Un nouveau Distinction a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Distinction avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Distinction avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Distinction {{ id }} ?"
+      },
+      "detail": {
+        "title": "Distinction"
+      },
+      "libelleDistinction": "Libelle Distinction",
+      "employe": "Employe"
+    }
+  }
+}

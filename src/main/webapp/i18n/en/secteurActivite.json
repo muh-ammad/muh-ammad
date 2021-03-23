@@ -1,0 +1,22 @@
+{
+  "gpecmanagerApp": {
+    "secteurActivite": {
+      "home": {
+        "title": "Secteur Activites",
+        "createLabel": "Create a new Secteur Activite",
+        "createOrEditLabel": "Create or edit a Secteur Activite",
+        "notFound": "No Secteur Activites found"
+      },
+      "created": "A new Secteur Activite is created with identifier {{ param }}",
+      "updated": "A Secteur Activite is updated with identifier {{ param }}",
+      "deleted": "A Secteur Activite is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Secteur Activite {{ id }}?"
+      },
+      "detail": {
+        "title": "Secteur Activite"
+      },
+      "libelleActivite": "Libelle Activite"
+    }
+  }
+}

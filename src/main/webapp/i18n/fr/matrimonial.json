@@ -1,0 +1,11 @@
+{
+  "gpecmanagerApp": {
+    "Matrimonial": {
+      "null": "",
+      "CELIBATAIRE": "CELIBATAIRE",
+      "MARIE": "MARIE",
+      "VEUF": "VEUF",
+      "DIVORCE": "DIVORCE"
+    }
+  }
+}

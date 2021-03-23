@@ -1,0 +1,24 @@
+{
+  "gpecmanagerApp": {
+    "opex": {
+      "home": {
+        "title": "Opexes",
+        "createLabel": "Créer un nouveau Opex",
+        "createOrEditLabel": "Créer ou éditer un Opex",
+        "notFound": "Aucun Opex trouvé"
+      },
+      "created": "Un nouveau Opex a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Opex avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Opex avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Opex {{ id }} ?"
+      },
+      "detail": {
+        "title": "Opex"
+      },
+      "lieuOpex": "Lieu Opex",
+      "anneeOpex": "Annee Opex",
+      "employe": "Employe"
+    }
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "name": "Employe",
+  "fields": [
+    {
+      "fieldName": "matricule",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "prenoms",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "intituleEmploye",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateNaissance",
+      "fieldType": "Instant",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "lieuNaissance",
+      "fieldType": "Instant",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "numeroTelephone",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "adresse",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateEmbauchement",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dateRetraite",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "age",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "numeroCni",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numeroIpres",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numeroCss",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "groupeSanguin",
+      "fieldType": "GroupeSanguin",
+      "fieldValues": "AP,AM,BP,BM,OP,OM,ABP,ABM"
+    },
+    {
+      "fieldName": "situationMatrimonial",
+      "fieldType": "Matrimonial",
+      "fieldValues": "CELIBATAIRE,MARIE,VEUF,DIVORCE"
+    },
+    {
+      "fieldName": "sexe",
+      "fieldType": "Sexe",
+      "fieldValues": "FEMININ,MASCULIN"
+    },
+    {
+      "fieldName": "disponibilite",
+      "fieldType": "Disponibilite",
+      "fieldValues": "ENCOURS,ARRETE,CONGES,RETRAITE"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "contrat",
+      "otherEntityRelationshipName": "employe",
+      "relationshipName": "contrat",
+      "otherEntityField": "libelleContrat",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "diplome",
+      "otherEntityRelationshipName": "employe",
+      "relationshipName": "diplome"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "fonction",
+      "otherEntityRelationshipName": "employe",
+      "relationshipName": "fonction"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "membreFamille",
+      "otherEntityRelationshipName": "employe",
+      "relationshipName": "membreFamille"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "distinction",
+      "otherEntityRelationshipName": "employe",
+      "relationshipName": "distinction"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "operationExterieur",
+      "otherEntityRelationshipName": "employe",
+      "relationshipName": "operationExterieur"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "serviceAffecte",
+      "otherEntityRelationshipName": "employe",
+      "relationshipName": "service",
+      "otherEntityField": "libelleService",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "serviceFrequente",
+      "otherEntityRelationshipName": "employe",
+      "relationshipName": "serviceFrequente",
+      "otherEntityField": "libelleService",
+      "ownerSide": true
+    }
+  ],
+  "changelogDate": "20210315135707",
+  "entityTableName": "employe",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

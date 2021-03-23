@@ -1,0 +1,129 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="employe">
+            <h2><span jhiTranslate="gpecmanagerApp.employe.detail.title">Employe</span> {{ employe.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gpecmanagerApp.employe.matricule">Matricule</span></dt>
+                <dd>
+                    <span>{{ employe.matricule }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.prenoms">Prenoms</span></dt>
+                <dd>
+                    <span>{{ employe.prenoms }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.nom">Nom</span></dt>
+                <dd>
+                    <span>{{ employe.nom }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.intituleEmploye">Intitule Employe</span></dt>
+                <dd>
+                    <span>{{ employe.intituleEmploye }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.dateNaissance">Date Naissance</span></dt>
+                <dd>
+                    <span>{{ employe.dateNaissance }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.lieuNaissance">Lieu Naissance</span></dt>
+                <dd>
+                    <span>{{ employe.lieuNaissance }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.numeroTelephone">Numero Telephone</span></dt>
+                <dd>
+                    <span>{{ employe.numeroTelephone }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.adresse">Adresse</span></dt>
+                <dd>
+                    <span>{{ employe.adresse }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.photo">Photo</span></dt>
+                <dd>
+                    <div *ngIf="employe.photo">
+                        <a (click)="openFile(employe.photoContentType, employe.photo)">
+                            <img [src]="'data:' + employe.photoContentType + ';base64,' + employe.photo" style="max-width: 100%;" alt="employe image"/>
+                        </a>
+                        {{ employe.photoContentType }}, {{ byteSize(employe.photo) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.email">Email</span></dt>
+                <dd>
+                    <span>{{ employe.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.dateEmbauchement">Date Embauchement</span></dt>
+                <dd>
+                    <span>{{ employe.dateEmbauchement }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.dateRetraite">Date Retraite</span></dt>
+                <dd>
+                    <span>{{ employe.dateRetraite }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.age">Age</span></dt>
+                <dd>
+                    <span>{{ employe.age }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.numeroCni">Numero Cni</span></dt>
+                <dd>
+                    <span>{{ employe.numeroCni }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.numeroIpres">Numero Ipres</span></dt>
+                <dd>
+                    <span>{{ employe.numeroIpres }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.numeroCss">Numero Css</span></dt>
+                <dd>
+                    <span>{{ employe.numeroCss }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.groupeSanguin">Groupe Sanguin</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'gpecmanagerApp.GroupeSanguin.' + employe.groupeSanguin }}">{{ employe.groupeSanguin }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.situationMatrimonial">Situation Matrimonial</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'gpecmanagerApp.Matrimonial.' + employe.situationMatrimonial }}">{{ employe.situationMatrimonial }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.sexe">Sexe</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'gpecmanagerApp.Sexe.' + employe.sexe }}">{{ employe.sexe }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.disponibilite">Disponibilite</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'gpecmanagerApp.Disponibilite.' + employe.disponibilite }}">{{ employe.disponibilite }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.contrat">Contrat</span></dt>
+                <dd>
+                    <div *ngIf="employe.contrat">
+                        <a [routerLink]="['/contrat', employe.contrat?.id, 'view']">{{ employe.contrat?.libelleContrat }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.service">Service</span></dt>
+                <dd>
+                    <span *ngFor="let service of employe.services; let last = last">
+                        <a [routerLink]="['/service-affecte', service?.id, 'view']">{{ service.libelleService }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.employe.serviceFrequente">Service Frequente</span></dt>
+                <dd>
+                    <span *ngFor="let serviceFrequente of employe.serviceFrequentes; let last = last">
+                        <a [routerLink]="['/service-frequente', serviceFrequente?.id, 'view']">{{ serviceFrequente.libelleService }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/employe', employe.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+{
+  "name": "Specialite",
+  "fields": [
+    {
+      "fieldName": "libelleSpecialite",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "fonction",
+      "otherEntityRelationshipName": "specialite",
+      "relationshipName": "fonction",
+      "otherEntityField": "libelleFonction"
+    }
+  ],
+  "changelogDate": "20210315135907",
+  "entityTableName": "specialite",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

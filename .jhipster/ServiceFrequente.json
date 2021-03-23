@@ -1,0 +1,40 @@
+{
+  "name": "ServiceFrequente",
+  "fields": [
+    {
+      "fieldName": "codeService",
+      "fieldType": "Long",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "libelleService",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "employe",
+      "otherEntityRelationshipName": "serviceFrequente",
+      "relationshipName": "employe",
+      "otherEntityField": "intituleEmploye",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20210315140107",
+  "entityTableName": "service_frequente",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

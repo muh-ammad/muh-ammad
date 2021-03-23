@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="diplome">
+            <h2><span jhiTranslate="gpecmanagerApp.diplome.detail.title">Diplome</span> {{ diplome.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gpecmanagerApp.diplome.libelleDiplome">Libelle Diplome</span></dt>
+                <dd>
+                    <span>{{ diplome.libelleDiplome }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.diplome.anneeDiplome">Annee Diplome</span></dt>
+                <dd>
+                    <span>{{ diplome.anneeDiplome }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.diplome.employe">Employe</span></dt>
+                <dd>
+                    <div *ngIf="diplome.employe">
+                        <a [routerLink]="['/employe', diplome.employe?.id, 'view']">{{ diplome.employe?.intituleEmploye }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/diplome', diplome.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+{
+  "gpecmanagerApp": {
+    "operationExterieur": {
+      "home": {
+        "title": "Operation Exterieurs",
+        "createLabel": "Create a new Operation Exterieur",
+        "createOrEditLabel": "Create or edit a Operation Exterieur",
+        "notFound": "No Operation Exterieurs found"
+      },
+      "created": "A new Operation Exterieur is created with identifier {{ param }}",
+      "updated": "A Operation Exterieur is updated with identifier {{ param }}",
+      "deleted": "A Operation Exterieur is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Operation Exterieur {{ id }}?"
+      },
+      "detail": {
+        "title": "Operation Exterieur"
+      },
+      "lieuOpex": "Lieu Opex",
+      "anneeOpex": "Annee Opex",
+      "employe": "Employe"
+    }
+  }
+}

@@ -1,0 +1,246 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-employe-heading" jhiTranslate="gpecmanagerApp.employe.home.createOrEditLabel">Create or edit a Employe</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.matricule" for="field_matricule">Matricule</label>
+                    <input type="text" class="form-control" name="matricule" id="field_matricule"
+                           formControlName="matricule"/>
+                    <div *ngIf="editForm.get('matricule')!.invalid && (editForm.get('matricule')!.dirty || editForm.get('matricule')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('matricule')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.prenoms" for="field_prenoms">Prenoms</label>
+                    <input type="text" class="form-control" name="prenoms" id="field_prenoms"
+                           formControlName="prenoms"/>
+                    <div *ngIf="editForm.get('prenoms')!.invalid && (editForm.get('prenoms')!.dirty || editForm.get('prenoms')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('prenoms')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.nom" for="field_nom">Nom</label>
+                    <input type="text" class="form-control" name="nom" id="field_nom"
+                           formControlName="nom"/>
+                    <div *ngIf="editForm.get('nom')!.invalid && (editForm.get('nom')!.dirty || editForm.get('nom')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nom')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.intituleEmploye" for="field_intituleEmploye">Intitule Employe</label>
+                    <input type="text" class="form-control" name="intituleEmploye" id="field_intituleEmploye"
+                           formControlName="intituleEmploye"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.dateNaissance" for="field_dateNaissance">Date Naissance</label>
+                    <div class="d-flex">
+                        <input id="field_dateNaissance" type="datetime-local" class="form-control" name="dateNaissance" formControlName="dateNaissance" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('dateNaissance')!.invalid && (editForm.get('dateNaissance')!.dirty || editForm.get('dateNaissance')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dateNaissance')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('dateNaissance')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.lieuNaissance" for="field_lieuNaissance">Lieu Naissance</label>
+                    <div class="d-flex">
+                        <input id="field_lieuNaissance" type="datetime-local" class="form-control" name="lieuNaissance" formControlName="lieuNaissance" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('lieuNaissance')!.invalid && (editForm.get('lieuNaissance')!.dirty || editForm.get('lieuNaissance')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('lieuNaissance')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('lieuNaissance')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.numeroTelephone" for="field_numeroTelephone">Numero Telephone</label>
+                    <input type="text" class="form-control" name="numeroTelephone" id="field_numeroTelephone"
+                           formControlName="numeroTelephone"/>
+                    <div *ngIf="editForm.get('numeroTelephone')!.invalid && (editForm.get('numeroTelephone')!.dirty || editForm.get('numeroTelephone')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('numeroTelephone')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.adresse" for="field_adresse">Adresse</label>
+                    <input type="text" class="form-control" name="adresse" id="field_adresse"
+                           formControlName="adresse"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.photo" for="field_photo">Photo</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('photoContentType')!.value + ';base64,' + editForm.get('photo')!.value" style="max-height: 100px;" *ngIf="editForm.get('photo')!.value" alt="employe image"/>
+                        <div *ngIf="editForm.get('photo')!.value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{ editForm.get('photoContentType')!.value }}, {{ byteSize(editForm.get('photo')!.value) }}</span>
+                            <button type="button" (click)="clearInputImage('photo', 'photoContentType', 'file_photo')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_photo" (change)="setFileData($event, 'photo', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="photo" id="field_photo"
+                           formControlName="photo"/>
+                    <input type="hidden" class="form-control" name="photoContentType" id="field_photoContentType"
+                           formControlName="photoContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                           formControlName="email"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.dateEmbauchement" for="field_dateEmbauchement">Date Embauchement</label>
+                    <div class="d-flex">
+                        <input id="field_dateEmbauchement" type="datetime-local" class="form-control" name="dateEmbauchement" formControlName="dateEmbauchement" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.dateRetraite" for="field_dateRetraite">Date Retraite</label>
+                    <div class="d-flex">
+                        <input id="field_dateRetraite" type="datetime-local" class="form-control" name="dateRetraite" formControlName="dateRetraite" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.age" for="field_age">Age</label>
+                    <input type="number" class="form-control" name="age" id="field_age"
+                           formControlName="age"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.numeroCni" for="field_numeroCni">Numero Cni</label>
+                    <input type="text" class="form-control" name="numeroCni" id="field_numeroCni"
+                           formControlName="numeroCni"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.numeroIpres" for="field_numeroIpres">Numero Ipres</label>
+                    <input type="text" class="form-control" name="numeroIpres" id="field_numeroIpres"
+                           formControlName="numeroIpres"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.numeroCss" for="field_numeroCss">Numero Css</label>
+                    <input type="text" class="form-control" name="numeroCss" id="field_numeroCss"
+                           formControlName="numeroCss"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.groupeSanguin" for="field_groupeSanguin">Groupe Sanguin</label>
+                    <select class="form-control" name="groupeSanguin" formControlName="groupeSanguin" id="field_groupeSanguin">
+                        <option value="AP">{{ 'gpecmanagerApp.GroupeSanguin.AP' | translate }}</option>
+                        <option value="AM">{{ 'gpecmanagerApp.GroupeSanguin.AM' | translate }}</option>
+                        <option value="BP">{{ 'gpecmanagerApp.GroupeSanguin.BP' | translate }}</option>
+                        <option value="BM">{{ 'gpecmanagerApp.GroupeSanguin.BM' | translate }}</option>
+                        <option value="OP">{{ 'gpecmanagerApp.GroupeSanguin.OP' | translate }}</option>
+                        <option value="OM">{{ 'gpecmanagerApp.GroupeSanguin.OM' | translate }}</option>
+                        <option value="ABP">{{ 'gpecmanagerApp.GroupeSanguin.ABP' | translate }}</option>
+                        <option value="ABM">{{ 'gpecmanagerApp.GroupeSanguin.ABM' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.situationMatrimonial" for="field_situationMatrimonial">Situation Matrimonial</label>
+                    <select class="form-control" name="situationMatrimonial" formControlName="situationMatrimonial" id="field_situationMatrimonial">
+                        <option value="CELIBATAIRE">{{ 'gpecmanagerApp.Matrimonial.CELIBATAIRE' | translate }}</option>
+                        <option value="MARIE">{{ 'gpecmanagerApp.Matrimonial.MARIE' | translate }}</option>
+                        <option value="VEUF">{{ 'gpecmanagerApp.Matrimonial.VEUF' | translate }}</option>
+                        <option value="DIVORCE">{{ 'gpecmanagerApp.Matrimonial.DIVORCE' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.sexe" for="field_sexe">Sexe</label>
+                    <select class="form-control" name="sexe" formControlName="sexe" id="field_sexe">
+                        <option value="FEMININ">{{ 'gpecmanagerApp.Sexe.FEMININ' | translate }}</option>
+                        <option value="MASCULIN">{{ 'gpecmanagerApp.Sexe.MASCULIN' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.disponibilite" for="field_disponibilite">Disponibilite</label>
+                    <select class="form-control" name="disponibilite" formControlName="disponibilite" id="field_disponibilite">
+                        <option value="ENCOURS">{{ 'gpecmanagerApp.Disponibilite.ENCOURS' | translate }}</option>
+                        <option value="ARRETE">{{ 'gpecmanagerApp.Disponibilite.ARRETE' | translate }}</option>
+                        <option value="CONGES">{{ 'gpecmanagerApp.Disponibilite.CONGES' | translate }}</option>
+                        <option value="RETRAITE">{{ 'gpecmanagerApp.Disponibilite.RETRAITE' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gpecmanagerApp.employe.contrat" for="field_contrat">Contrat</label>
+                    <select class="form-control" id="field_contrat" name="contrat" formControlName="contrat">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="contratOption.id === editForm.get('contrat')!.value?.id ? editForm.get('contrat')!.value : contratOption" *ngFor="let contratOption of contrats; trackBy: trackById">{{ contratOption.libelleContrat }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="gpecmanagerApp.employe.service" for="field_services">Service</label>
+                    <select class="form-control" id="field_services" multiple name="services" formControlName="services">
+                        <option [ngValue]="getSelected(editForm.get('services')!.value, serviceAffecteOption)" *ngFor="let serviceAffecteOption of serviceaffectes; trackBy: trackById">{{ serviceAffecteOption.libelleService }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="gpecmanagerApp.employe.serviceFrequente" for="field_serviceFrequentes">Service Frequente</label>
+                    <select class="form-control" id="field_serviceFrequentes" multiple name="serviceFrequentes" formControlName="serviceFrequentes">
+                        <option [ngValue]="getSelected(editForm.get('serviceFrequentes')!.value, serviceFrequenteOption)" *ngFor="let serviceFrequenteOption of servicefrequentes; trackBy: trackById">{{ serviceFrequenteOption.libelleService }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

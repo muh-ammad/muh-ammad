@@ -1,0 +1,89 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="gpecmanagerApp.membreFamille.home.title">Membre Familles</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-membre-famille" [routerLink]="['/membre-famille/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="gpecmanagerApp.membreFamille.home.createLabel">
+            Create a new Membre Famille
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="membreFamilles?.length === 0">
+        <span jhiTranslate="gpecmanagerApp.membreFamille.home.notFound">No membreFamilles found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="membreFamilles && membreFamilles.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="prenoms"><span jhiTranslate="gpecmanagerApp.membreFamille.prenoms">Prenoms</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nom"><span jhiTranslate="gpecmanagerApp.membreFamille.nom">Nom</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateNaissance"><span jhiTranslate="gpecmanagerApp.membreFamille.dateNaissance">Date Naissance</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="lieuNaissance"><span jhiTranslate="gpecmanagerApp.membreFamille.lieuNaissance">Lieu Naissance</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="epoux"><span jhiTranslate="gpecmanagerApp.membreFamille.epoux">Epoux</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="epouse"><span jhiTranslate="gpecmanagerApp.membreFamille.epouse">Epouse</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="enfant"><span jhiTranslate="gpecmanagerApp.membreFamille.enfant">Enfant</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="employe.intituleEmploye"><span jhiTranslate="gpecmanagerApp.membreFamille.employe">Employe</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let membreFamille of membreFamilles ;trackBy: trackId">
+                    <td><a [routerLink]="['/membre-famille', membreFamille.id, 'view']">{{ membreFamille.id }}</a></td>
+                    <td>{{ membreFamille.prenoms }}</td>
+                    <td>{{ membreFamille.nom }}</td>
+                    <td>{{ membreFamille.dateNaissance | date:'medium' }}</td>
+                    <td>{{ membreFamille.lieuNaissance }}</td>
+                    <td>{{ membreFamille.epoux }}</td>
+                    <td>{{ membreFamille.epouse }}</td>
+                    <td>{{ membreFamille.enfant }}</td>
+                    <td>
+                        <div *ngIf="membreFamille.employe">
+                            <a [routerLink]="['/employe', membreFamille.employe?.id, 'view']" >{{ membreFamille.employe?.intituleEmploye }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/membre-famille', membreFamille.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/membre-famille', membreFamille.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(membreFamille)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="membreFamilles && membreFamilles.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

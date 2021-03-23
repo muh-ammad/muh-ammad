@@ -1,0 +1,32 @@
+{
+  "name": "Distinction",
+  "fields": [
+    {
+      "fieldName": "libelleDistinction",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "employe",
+      "otherEntityRelationshipName": "distinction",
+      "relationshipName": "employe",
+      "otherEntityField": "intituleEmploye"
+    }
+  ],
+  "changelogDate": "20210315140607",
+  "entityTableName": "distinction",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

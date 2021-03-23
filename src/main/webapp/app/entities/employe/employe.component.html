@@ -1,0 +1,183 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="gpecmanagerApp.employe.home.title">Employes</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-employe"
+            [routerLink]="['/employe/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span jhiTranslate="gpecmanagerApp.employe.home.createLabel">
+                +
+            </span>
+        </button>
+        <!--button class="float right jh-create-entity create-employe" mat-raised-button>Clear table</button-->
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="employes?.length === 0">
+        <span jhiTranslate="gpecmanagerApp.employe.home.notFound">No employes found</span>
+    </div>
+
+    <div *ngIf="employes && employes.length > 0">
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+        </mat-form-field>
+
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="matricule">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Matricule </th>
+                    <td mat-cell *matCellDef="let row"> {{row.matricule}} </td>
+                </ng-container>
+
+                <!-- Progress Column -->
+                <ng-container matColumnDef="intituleEmploye">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Prenoms & Nom </th>
+                    <td mat-cell *matCellDef="let row"> {{row.intituleEmploye}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="dateNaissance">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Naissance </th>
+                    <td mat-cell *matCellDef="let row"> {{row.dateNaissance}} </td>
+                </ng-container>
+
+                <!-- Color Column -->
+                <ng-container matColumnDef="numeroCni">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Numero CNI</th>
+                    <td mat-cell *matCellDef="let row"> {{row.numeroCni}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="dateEmbauchement">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Embauchement </th>
+                    <td mat-cell *matCellDef="let row"> {{row.dateEmbauchement}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let row">
+                        <fa-icon icon="eye"></fa-icon>
+                    </td>
+                    <td mat-cell *matCellDef="let row">
+                        <fa-icon icon="edit"></fa-icon>
+                    </td>
+                    <td mat-cell *matCellDef="let row">
+                        <fa-icon icon="times"></fa-icon>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+        </div>
+        <!--table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="matricule"><span jhiTranslate="gpecmanagerApp.employe.matricule">Matricule</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="prenoms"><span jhiTranslate="gpecmanagerApp.employe.prenoms">Prenoms</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nom"><span jhiTranslate="gpecmanagerApp.employe.nom">Nom</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="intituleEmploye"><span jhiTranslate="gpecmanagerApp.employe.intituleEmploye">Intitule Employe</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateNaissance"><span jhiTranslate="gpecmanagerApp.employe.dateNaissance">Date Naissance</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="lieuNaissance"><span jhiTranslate="gpecmanagerApp.employe.lieuNaissance">Lieu Naissance</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="numeroTelephone"><span jhiTranslate="gpecmanagerApp.employe.numeroTelephone">Numero Telephone</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="adresse"><span jhiTranslate="gpecmanagerApp.employe.adresse">Adresse</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="photo"><span jhiTranslate="gpecmanagerApp.employe.photo">Photo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="gpecmanagerApp.employe.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateEmbauchement"><span jhiTranslate="gpecmanagerApp.employe.dateEmbauchement">Date Embauchement</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateRetraite"><span jhiTranslate="gpecmanagerApp.employe.dateRetraite">Date Retraite</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="age"><span jhiTranslate="gpecmanagerApp.employe.age">Age</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="numeroCni"><span jhiTranslate="gpecmanagerApp.employe.numeroCni">Numero Cni</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="numeroIpres"><span jhiTranslate="gpecmanagerApp.employe.numeroIpres">Numero Ipres</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="numeroCss"><span jhiTranslate="gpecmanagerApp.employe.numeroCss">Numero Css</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="groupeSanguin"><span jhiTranslate="gpecmanagerApp.employe.groupeSanguin">Groupe Sanguin</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="situationMatrimonial"><span jhiTranslate="gpecmanagerApp.employe.situationMatrimonial">Situation Matrimonial</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="sexe"><span jhiTranslate="gpecmanagerApp.employe.sexe">Sexe</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="disponibilite"><span jhiTranslate="gpecmanagerApp.employe.disponibilite">Disponibilite</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="contrat.libelleContrat"><span jhiTranslate="gpecmanagerApp.employe.contrat">Contrat</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employe of employes ;trackBy: trackId">
+                    <td><a [routerLink]="['/employe', employe.id, 'view']">{{ employe.id }}</a></td>
+                    <td>{{ employe.matricule }}</td>
+                    <td>{{ employe.prenoms }}</td>
+                    <td>{{ employe.nom }}</td>
+                    <td>{{ employe.intituleEmploye }}</td>
+                    <td>{{ employe.dateNaissance | date:'medium' }}</td>
+                    <td>{{ employe.lieuNaissance | date:'medium' }}</td>
+                    <td>{{ employe.numeroTelephone }}</td>
+                    <td>{{ employe.adresse }}</td>
+                    <td>
+                        <a *ngIf="employe.photo" (click)="openFile(employe.photoContentType, employe.photo)">
+                            <img [src]="'data:' + employe.photoContentType + ';base64,' + employe.photo" style="max-height: 30px;" alt="employe image"/>
+                        </a>
+                        <span *ngIf="employe.photo">{{ employe.photoContentType }}, {{ byteSize(employe.photo) }}</span>
+                    </td>
+                    <td>{{ employe.email }}</td>
+                    <td>{{ employe.dateEmbauchement | date:'medium' }}</td>
+                    <td>{{ employe.dateRetraite | date:'medium' }}</td>
+                    <td>{{ employe.age }}</td>
+                    <td>{{ employe.numeroCni }}</td>
+                    <td>{{ employe.numeroIpres }}</td>
+                    <td>{{ employe.numeroCss }}</td>
+                    <td jhiTranslate="{{ 'gpecmanagerApp.GroupeSanguin.' + employe.groupeSanguin }}">{{ employe.groupeSanguin }}</td>
+                    <td jhiTranslate="{{ 'gpecmanagerApp.Matrimonial.' + employe.situationMatrimonial }}">{{ employe.situationMatrimonial }}</td>
+                    <td jhiTranslate="{{ 'gpecmanagerApp.Sexe.' + employe.sexe }}">{{ employe.sexe }}</td>
+                    <td jhiTranslate="{{ 'gpecmanagerApp.Disponibilite.' + employe.disponibilite }}">{{ employe.disponibilite }}</td>
+                    <td>
+                        <div *ngIf="employe.contrat">
+                            <a [routerLink]="['/contrat', employe.contrat?.id, 'view']" >{{ employe.contrat?.libelleContrat }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/employe', employe.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/employe', employe.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(employe)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table-->
+    </div>
+
+    <!--div *ngIf="employes && employes.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div-->
+</div>

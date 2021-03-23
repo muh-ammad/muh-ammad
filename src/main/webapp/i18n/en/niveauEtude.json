@@ -1,0 +1,11 @@
+{
+  "gpecmanagerApp": {
+    "NiveauEtude": {
+      "null": "",
+      "AUCUN": "AUCUN",
+      "PRIMAIRE": "PRIMAIRE",
+      "SECONDAIRE": "SECONDAIRE",
+      "UNIVERSITAIRE": "UNIVERSITAIRE"
+    }
+  }
+}

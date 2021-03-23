@@ -1,0 +1,136 @@
+entity Employe {
+    matricule String required,
+	prenoms String required,
+	nom String required,
+    intituleEmploye String,
+    dateNaissance Instant required,
+    lieuNaissance Instant required,
+    numeroTelephone String required,
+    adresse String,
+    photo ImageBlob,
+	email String,
+	dateEmbauchement Instant,
+    dateRetraite Instant,
+	age Long,
+    numeroCni String,
+    numeroIpres String,
+    numeroCss String,
+    groupeSanguin GroupeSanguin,
+    situationMatrimonial Matrimonial,
+    sexe Sexe,
+    disponibilite Disponibilite
+}
+
+entity Fonction {
+libelleFonction String required
+}
+
+entity Specialite {
+libelleSpecialite String required
+}
+
+entity ServiceAffecte {
+codeService Long required,
+libelleService String required
+}
+
+entity ServiceFrequente {
+codeService Long required,
+libelleService String required
+
+}
+
+entity MembreFamille {
+prenoms String required,
+nom String required,
+dateNaissance Instant required,
+lieuNaissance String required,
+epoux Boolean,
+epouse Boolean,
+enfant Boolean,
+}
+
+entity OperationExterieur {
+lieuOpex String required,
+anneeOpex Instant required
+}
+
+entity Contrat {
+numeroContrat String required,
+libelleContrat String required
+dateDebut Instant required,
+dateFin Instant required,
+niveauEtude NiveauEtude required,
+typeContrat TypeContrat required
+}
+
+entity Diplome {
+libelleDiplome String required,
+anneeDiplome Instant
+}
+
+entity Distinction {
+libelleDistinction String required
+}
+
+entity SecteurActivite {
+libelleActivite String required
+}
+
+enum Civilite {
+    CIVIL, MILITAIRE
+}
+
+enum GroupeSanguin {
+AP, AM, BP, BM, OP, OM, ABP, ABM
+}
+
+enum Matrimonial {
+     CELIBATAIRE, MARIE, VEUF, DIVORCE
+}
+
+enum Sexe {
+     FEMININ, MASCULIN
+}
+
+enum TypeContrat {
+PRESTATAIRE, CDD, CDI
+}
+
+enum NiveauEtude {
+AUCUN, PRIMAIRE, SECONDAIRE, UNIVERSITAIRE
+}
+
+enum Disponibilite {
+ENCOURS, ARRETE, CONGES, RETRAITE
+}
+
+relationship OneToOne {
+	Employe{contrat(libelleContrat)} to Contrat,
+    ServiceAffecte{secteurActivite(libelleActivite)} to SecteurActivite
+}
+
+relationship ManyToMany {
+	Employe{service(libelleService)} to ServiceAffecte{employe(intituleEmploye)},
+    Employe{serviceFrequente(libelleService)} to ServiceFrequente{employe(intituleEmploye)}
+}
+
+relationship OneToMany {
+	Employe to Diplome{employe(intituleEmploye)},
+	Employe to Fonction{employe(intituleEmploye)},
+    Employe to MembreFamille{employe(intituleEmploye)},
+    Employe to Distinction{employe(intituleEmploye)}
+    Employe to OperationExterieur{employe(intituleEmploye)}
+    Fonction to Specialite{fonction(libelleFonction)}
+}
+
+paginate Contrat, Fonction, Specialite, SecteurActivite with infinite-scroll
+paginate ServiceAffecte, ServiceFrequente, Employe, MembreFamille, Distinction, Diplome, OperationExterieur with pagination
+
+// Set service options to all except few
+service all with serviceImpl except Fonction, Specialite, Activite, ServiceFrequente, Diplome, OperationExterieur
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
+
+filter all

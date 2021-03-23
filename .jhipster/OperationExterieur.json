@@ -1,0 +1,39 @@
+{
+  "name": "OperationExterieur",
+  "fields": [
+    {
+      "fieldName": "lieuOpex",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "anneeOpex",
+      "fieldType": "Instant",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "employe",
+      "otherEntityRelationshipName": "operationExterieur",
+      "relationshipName": "employe",
+      "otherEntityField": "intituleEmploye"
+    }
+  ],
+  "changelogDate": "20210315141538",
+  "entityTableName": "operation_exterieur",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

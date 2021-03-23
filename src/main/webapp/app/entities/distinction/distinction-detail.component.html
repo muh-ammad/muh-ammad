@@ -1,0 +1,36 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="distinction">
+            <h2><span jhiTranslate="gpecmanagerApp.distinction.detail.title">Distinction</span> {{ distinction.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gpecmanagerApp.distinction.libelleDistinction">Libelle Distinction</span></dt>
+                <dd>
+                    <span>{{ distinction.libelleDistinction }}</span>
+                </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.distinction.employe">Employe</span></dt>
+                <dd>
+                    <div *ngIf="distinction.employe">
+                        <a [routerLink]="['/employe', distinction.employe?.id, 'view']">{{ distinction.employe?.intituleEmploye }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/distinction', distinction.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

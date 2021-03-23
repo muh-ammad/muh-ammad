@@ -1,0 +1,48 @@
+{
+  "name": "Service",
+  "fields": [
+    {
+      "fieldName": "codeService",
+      "fieldType": "Long",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "libelleService",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "secteurActivite",
+      "otherEntityRelationshipName": "service",
+      "relationshipName": "secteurActivite",
+      "otherEntityField": "libelleActivite",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "employe",
+      "otherEntityRelationshipName": "service",
+      "relationshipName": "employe",
+      "otherEntityField": "intituleEmploye",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20210315140007",
+  "entityTableName": "service",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
