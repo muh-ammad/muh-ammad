@@ -1,0 +1,24 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="info5 (generated)" id="1617717931185-1">
+        <addUniqueConstraint columnNames="employe_id" constraintName="UC_CONTRATEMPLOYE_ID_COL" tableName="contrat"/>
+    </changeSet>
+    <changeSet author="info5 (generated)" id="1617717931185-2">
+        <addForeignKeyConstraint baseColumnNames="employe_id" baseTableName="contrat" constraintName="FKidi9k1fvw6mma24yqoe2kmtju" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="employe" validate="true"/>
+    </changeSet>
+    <changeSet author="info5 (generated)" id="1617717931185-3">
+        <dropForeignKeyConstraint baseTableName="opex" constraintName="fk_opex_employe_id"/>
+    </changeSet>
+    <changeSet author="info5 (generated)" id="1617717931185-4">
+        <dropForeignKeyConstraint baseTableName="service" constraintName="fk_service_secteur_activite_id"/>
+    </changeSet>
+    <changeSet author="info5 (generated)" id="1617717931185-5">
+        <dropUniqueConstraint constraintName="ux_service_secteur_activite_id" tableName="service"/>
+    </changeSet>
+    <changeSet author="info5 (generated)" id="1617717931185-6">
+        <dropTable tableName="opex"/>
+    </changeSet>
+    <changeSet author="info5 (generated)" id="1617717931185-7">
+        <dropTable tableName="service"/>
+    </changeSet>
+</databaseChangeLog>
