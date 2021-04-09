@@ -1,15 +1,25 @@
 <div>
-    <h2 id="page-heading">
-        <span jhiTranslate="gpecmanagerApp.contrat.home.title">Contrats</span>
-
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-contrat" [routerLink]="['/contrat/new']">
-            <fa-icon icon="plus"></fa-icon>
-            <span  jhiTranslate="gpecmanagerApp.contrat.home.createLabel">
-            Create a new Contrat
-            </span>
-        </button>
-    </h2>
-
+    <div class="row">
+        <div class="col-sm-8">
+            <h2 id="page-heading">
+                <span jhiTranslate="gpecmanagerApp.contrat.home.title">Contrats</span>
+            </h2>
+        </div>
+        <div class="col-sm-4">
+            <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-contrat" 
+            [routerLink]="['/contrat/new']"
+            [ngbTooltip]="addTootltip" placement="left">
+                <fa-icon icon="plus"></fa-icon>
+                <ng-template #addTootltip>
+                    <span  jhiTranslate="gpecmanagerApp.contrat.home.createLabel">
+                        Create a new Contrat
+                        </span>
+                </ng-template>          
+            </button>
+       
+        </div>
+    </div>
+<br>
     <jhi-alert-error></jhi-alert-error>
 
     <jhi-alert></jhi-alert>
@@ -21,51 +31,60 @@
     <div class="table-responsive" id="entities" *ngIf="contrats && contrats.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
-                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="numeroContrat"><span jhiTranslate="gpecmanagerApp.contrat.numeroContrat">Numero Contrat</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="libelleContrat"><span jhiTranslate="gpecmanagerApp.contrat.libelleContrat">Libelle Contrat</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="dateDebut"><span jhiTranslate="gpecmanagerApp.contrat.dateDebut">Date Debut</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="dateFin"><span jhiTranslate="gpecmanagerApp.contrat.dateFin">Date Fin</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="niveauEtude"><span jhiTranslate="gpecmanagerApp.contrat.niveauEtude">Niveau Etude</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="typeContrat"><span jhiTranslate="gpecmanagerApp.contrat.typeContrat">Type Contrat</span> <fa-icon icon="sort"></fa-icon></th>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="numeroContrat"><span jhiTranslate="gpecmanagerApp.contrat.numeroContrat">Numero Contrat</span></th>
+                    <th scope="col"  jhiSortBy="libelleContrat"><span jhiTranslate="gpecmanagerApp.contrat.libelleContrat">Libelle Contrat</span> </th>
+                    <th scope="col"  jhiSortBy="dateDebut"><span jhiTranslate="gpecmanagerApp.contrat.dateDebut">Date Debut</span> </th>
+                    <th scope="col"  jhiSortBy="dateFin"><span jhiTranslate="gpecmanagerApp.contrat.dateFin">Date Fin</span> </th>
+                    <th scope="col"  jhiSortBy="niveauEtude"><span jhiTranslate="gpecmanagerApp.contrat.niveauEtude">Niveau Etude</span> </th>
+                    <th scope="col"  jhiSortBy="employe.employe"><span jhiTranslate="gpecmanagerApp.contrat.employe">Employe</span> </th>
                     <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tbody>
                 <tr *ngFor="let contrat of contrats ;trackBy: trackId">
-                    <td><a [routerLink]="['/contrat', contrat.id, 'view']">{{ contrat.id }}</a></td>
-                    <td>{{ contrat.numeroContrat }}</td>
+                    <td><a [routerLink]="['/contrat', contrat.id, 'view']">{{ contrat.numeroContrat }}</a></td>
                     <td>{{ contrat.libelleContrat }}</td>
-                    <td>{{ contrat.dateDebut | date:'medium' }}</td>
-                    <td>{{ contrat.dateFin | date:'medium' }}</td>
+                    <td>{{ contrat.dateDebut | date:'dd-MM-yyyy' }}</td>
+                    <td>{{ contrat.dateFin | date:'dd-MM-yyyy' }}</td>
                     <td jhiTranslate="{{ 'gpecmanagerApp.NiveauEtude.' + contrat.niveauEtude }}">{{ contrat.niveauEtude }}</td>
-                    <td jhiTranslate="{{ 'gpecmanagerApp.TypeContrat.' + contrat.typeContrat }}">{{ contrat.typeContrat }}</td>
+                    <td>
+                        <div *ngIf="contrat.employe">
+                            <a [routerLink]="['/employe', contrat.employe?.id, 'view']" >{{ contrat.employe?.intituleEmploye }}</a>
+                        </div>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
                                     [routerLink]="['/contrat', contrat.id, 'view']"
                                     class="btn btn-info btn-sm">
                                 <fa-icon icon="eye"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                             </button>
 
                             <button type="submit"
                                     [routerLink]="['/contrat', contrat.id, 'edit']"
                                     class="btn btn-primary btn-sm">
                                 <fa-icon icon="pencil-alt"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                             </button>
 
                             <button type="submit" (click)="delete(contrat)"
                                     class="btn btn-danger btn-sm">
                                 <fa-icon icon="times"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                             </button>
                         </div>
                     </td>
                 </tr>
             </tbody>
         </table>
+    </div>
+
+    <div *ngIf="contrats && contrats.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
     </div>
 </div>

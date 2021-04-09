@@ -16,7 +16,7 @@ import com.themalomars.gpecmanager.domain.enumeration.GroupeSanguin;
 import com.themalomars.gpecmanager.domain.enumeration.Matrimonial;
 
 import com.themalomars.gpecmanager.domain.enumeration.Sexe;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.themalomars.gpecmanager.domain.enumeration.Disponibilite;
 
 /**
@@ -106,7 +106,8 @@ public class Employe implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "disponibilite")
     private Disponibilite disponibilite;
-
+    
+    @JsonIgnore
     @OneToOne
     @JoinColumn(unique = true)
     private Contrat contrat;
@@ -133,16 +134,12 @@ public class Employe implements Serializable {
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JoinTable(name = "employe_service",
-               joinColumns = @JoinColumn(name = "employe_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "service_id", referencedColumnName = "id"))
+    @JoinTable(name = "employe_service", joinColumns = @JoinColumn(name = "employe_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "service_id", referencedColumnName = "id"))
     private Set<ServiceAffecte> services = new HashSet<>();
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JoinTable(name = "employe_service_frequente",
-               joinColumns = @JoinColumn(name = "employe_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "service_frequente_id", referencedColumnName = "id"))
+    @JoinTable(name = "employe_service_frequente", joinColumns = @JoinColumn(name = "employe_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "service_frequente_id", referencedColumnName = "id"))
     private Set<ServiceFrequente> serviceFrequentes = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -614,7 +611,8 @@ public class Employe implements Serializable {
     public void setServiceFrequentes(Set<ServiceFrequente> serviceFrequentes) {
         this.serviceFrequentes = serviceFrequentes;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and
+    // setters here
 
     @Override
     public boolean equals(Object o) {
@@ -635,29 +633,15 @@ public class Employe implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "Employe{" +
-            "id=" + getId() +
-            ", matricule='" + getMatricule() + "'" +
-            ", prenoms='" + getPrenoms() + "'" +
-            ", nom='" + getNom() + "'" +
-            ", intituleEmploye='" + getIntituleEmploye() + "'" +
-            ", dateNaissance='" + getDateNaissance() + "'" +
-            ", lieuNaissance='" + getLieuNaissance() + "'" +
-            ", numeroTelephone='" + getNumeroTelephone() + "'" +
-            ", adresse='" + getAdresse() + "'" +
-            ", photo='" + getPhoto() + "'" +
-            ", photoContentType='" + getPhotoContentType() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", dateEmbauchement='" + getDateEmbauchement() + "'" +
-            ", dateRetraite='" + getDateRetraite() + "'" +
-            ", age=" + getAge() +
-            ", numeroCni='" + getNumeroCni() + "'" +
-            ", numeroIpres='" + getNumeroIpres() + "'" +
-            ", numeroCss='" + getNumeroCss() + "'" +
-            ", groupeSanguin='" + getGroupeSanguin() + "'" +
-            ", situationMatrimonial='" + getSituationMatrimonial() + "'" +
-            ", sexe='" + getSexe() + "'" +
-            ", disponibilite='" + getDisponibilite() + "'" +
-            "}";
+        return "Employe{" + "id=" + getId() + ", matricule='" + getMatricule() + "'" + ", prenoms='" + getPrenoms()
+                + "'" + ", nom='" + getNom() + "'" + ", intituleEmploye='" + getIntituleEmploye() + "'"
+                + ", dateNaissance='" + getDateNaissance() + "'" + ", lieuNaissance='" + getLieuNaissance() + "'"
+                + ", numeroTelephone='" + getNumeroTelephone() + "'" + ", adresse='" + getAdresse() + "'" + ", photo='"
+                + getPhoto() + "'" + ", photoContentType='" + getPhotoContentType() + "'" + ", email='" + getEmail()
+                + "'" + ", dateEmbauchement='" + getDateEmbauchement() + "'" + ", dateRetraite='" + getDateRetraite()
+                + "'" + ", age=" + getAge() + ", numeroCni='" + getNumeroCni() + "'" + ", numeroIpres='"
+                + getNumeroIpres() + "'" + ", numeroCss='" + getNumeroCss() + "'" + ", groupeSanguin='"
+                + getGroupeSanguin() + "'" + ", situationMatrimonial='" + getSituationMatrimonial() + "'" + ", sexe='"
+                + getSexe() + "'" + ", disponibilite='" + getDisponibilite() + "'" + "}";
     }
 }

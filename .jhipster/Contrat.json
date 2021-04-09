@@ -46,11 +46,20 @@
       ]
     }
   ],
-  "relationships": [],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "employe",
+      "otherEntityRelationshipName": "contrat",
+      "relationshipName": "employe",
+      "otherEntityField": "intituleEmploye",
+      "ownerSide": true
+    }
+  ],
   "changelogDate": "20210315140407",
   "entityTableName": "contrat",
   "dto": "no",
-  "pagination": "infinite-scroll",
+  "pagination": "pagination",
   "service": "serviceImpl",
   "jpaMetamodelFiltering": true,
   "fluentMethods": true,

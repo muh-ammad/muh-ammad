@@ -1,4 +1,5 @@
 import { Moment } from 'moment';
+import { IEmploye } from 'app/shared/model/employe.model';
 import { NiveauEtude } from 'app/shared/model/enumerations/niveau-etude.model';
 import { TypeContrat } from 'app/shared/model/enumerations/type-contrat.model';
 
@@ -10,6 +11,7 @@ export interface IContrat {
   dateFin?: Moment;
   niveauEtude?: NiveauEtude;
   typeContrat?: TypeContrat;
+  employe?: IEmploye;
 }
 
 export class Contrat implements IContrat {
@@ -20,6 +22,7 @@ export class Contrat implements IContrat {
     public dateDebut?: Moment,
     public dateFin?: Moment,
     public niveauEtude?: NiveauEtude,
-    public typeContrat?: TypeContrat
+    public typeContrat?: TypeContrat,
+    public employe?: IEmploye
   ) {}
 }

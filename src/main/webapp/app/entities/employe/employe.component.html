@@ -62,7 +62,7 @@
                     </td>
                     <td><a [routerLink]="['/employe', employe.id, 'view']">{{ employe.matricule }}</a></td>
                     <td>{{ employe.intituleEmploye }}</td>
-                    <td>{{ employe.dateEmbauchement | date:'medium' }}</td>
+                    <td>{{ employe.dateEmbauchement | date:'dd-MM-yyyy' }}</td>
                     <td>{{ employe.age }}</td>
                     <td jhiTranslate="{{ 'gpecmanagerApp.Disponibilite.' + employe.disponibilite }}">{{ employe.disponibilite }}</td>
                     <td>

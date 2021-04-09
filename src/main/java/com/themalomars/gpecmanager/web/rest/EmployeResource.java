@@ -62,6 +62,9 @@ public class EmployeResource {
         if (employe.getId() != null) {
             throw new BadRequestAlertException("A new employe cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        employeService.createIntituleEmploye(employe);
+        employeService.definingAge(employe);
+        employeService.definingDateRetraite(employe);
         Employe result = employeService.save(employe);
         return ResponseEntity.created(new URI("/api/employes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -83,6 +86,9 @@ public class EmployeResource {
         if (employe.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
+        employeService.createIntituleEmploye(employe);
+        employeService.definingAge(employe);
+        employeService.definingDateRetraite(employe);
         Employe result = employeService.save(employe);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, employe.getId().toString()))

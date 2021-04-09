@@ -32,6 +32,12 @@
                 <dd>
                     <span jhiTranslate="{{ 'gpecmanagerApp.TypeContrat.' + contrat.typeContrat }}">{{ contrat.typeContrat }}</span>
                 </dd>
+                <dt><span jhiTranslate="gpecmanagerApp.contrat.employe">Employe</span></dt>
+                <dd>
+                    <div *ngIf="contrat.employe">
+                        <a [routerLink]="['/employe', contrat.employe?.id, 'view']">{{ contrat.employe?.intituleEmploye }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

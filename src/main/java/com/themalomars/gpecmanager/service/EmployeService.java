@@ -50,4 +50,8 @@ public interface EmployeService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    void createIntituleEmploye(Employe employe);
+    void definingAge(Employe employe);
+    void definingDateRetraite(Employe employe);
 }

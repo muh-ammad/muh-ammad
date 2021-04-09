@@ -21,7 +21,8 @@
       "dateDebut": "Date Debut",
       "dateFin": "Date Fin",
       "niveauEtude": "Niveau Etude",
-      "typeContrat": "Type Contrat"
+      "typeContrat": "Type Contrat",
+      "employe": "Employe"
     }
   }
 }

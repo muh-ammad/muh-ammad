@@ -38,6 +38,7 @@
     <include file="config/liquibase/changelog/20210315140607_added_entity_constraints_Distinction.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210315141538_added_entity_constraints_OperationExterieur.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210315144054_added_entity_constraints_ServiceAffecte.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210315140407_added_entity_constraints_Contrat.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

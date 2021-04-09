@@ -111,8 +111,7 @@
       "otherEntityName": "contrat",
       "otherEntityRelationshipName": "employe",
       "relationshipName": "contrat",
-      "otherEntityField": "libelleContrat",
-      "ownerSide": true
+      "otherEntityField": "libelleContrat"
     },
     {
       "relationshipType": "one-to-many",

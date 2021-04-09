@@ -125,7 +125,8 @@ export class EmployeComponent implements OnInit, OnDestroy {
     this.ngbPaginationPage = this.page ?? 1;
   }
 
-  search(): void{
+  search(): void{}
 
-  }
+
+
 }

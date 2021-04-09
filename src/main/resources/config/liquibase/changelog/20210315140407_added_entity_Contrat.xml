@@ -34,6 +34,9 @@
             <column name="type_contrat" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
+            <column name="employe_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_contrat_employe_id" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
         <dropDefaultValue tableName="contrat" columnName="date_debut" columnDataType="datetime"/>

@@ -77,6 +77,8 @@ public class ContratCriteria implements Serializable, Criteria {
 
     private TypeContratFilter typeContrat;
 
+    private LongFilter employeId;
+
     public ContratCriteria() {
     }
 
@@ -88,6 +90,7 @@ public class ContratCriteria implements Serializable, Criteria {
         this.dateFin = other.dateFin == null ? null : other.dateFin.copy();
         this.niveauEtude = other.niveauEtude == null ? null : other.niveauEtude.copy();
         this.typeContrat = other.typeContrat == null ? null : other.typeContrat.copy();
+        this.employeId = other.employeId == null ? null : other.employeId.copy();
     }
 
     @Override
@@ -151,6 +154,14 @@ public class ContratCriteria implements Serializable, Criteria {
         this.typeContrat = typeContrat;
     }
 
+    public LongFilter getEmployeId() {
+        return employeId;
+    }
+
+    public void setEmployeId(LongFilter employeId) {
+        this.employeId = employeId;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -168,7 +179,8 @@ public class ContratCriteria implements Serializable, Criteria {
             Objects.equals(dateDebut, that.dateDebut) &&
             Objects.equals(dateFin, that.dateFin) &&
             Objects.equals(niveauEtude, that.niveauEtude) &&
-            Objects.equals(typeContrat, that.typeContrat);
+            Objects.equals(typeContrat, that.typeContrat) &&
+            Objects.equals(employeId, that.employeId);
     }
 
     @Override
@@ -180,7 +192,8 @@ public class ContratCriteria implements Serializable, Criteria {
         dateDebut,
         dateFin,
         niveauEtude,
-        typeContrat
+        typeContrat,
+        employeId
         );
     }
 
@@ -195,6 +208,7 @@ public class ContratCriteria implements Serializable, Criteria {
                 (dateFin != null ? "dateFin=" + dateFin + ", " : "") +
                 (niveauEtude != null ? "niveauEtude=" + niveauEtude + ", " : "") +
                 (typeContrat != null ? "typeContrat=" + typeContrat + ", " : "") +
+                (employeId != null ? "employeId=" + employeId + ", " : "") +
             "}";
     }
 

@@ -18,6 +18,7 @@ import { IServiceAffecte } from 'app/shared/model/service-affecte.model';
 import { ServiceAffecteService } from 'app/entities/service-affecte/service-affecte.service';
 import { IServiceFrequente } from 'app/shared/model/service-frequente.model';
 import { ServiceFrequenteService } from 'app/entities/service-frequente/service-frequente.service';
+import { GroupeSanguin } from 'app/shared/model/enumerations/groupe-sanguin.model';
 
 type SelectableEntity = IContrat | IServiceAffecte | IServiceFrequente;
 
@@ -32,10 +33,14 @@ export class EmployeUpdateComponent implements OnInit {
   contrats: IContrat[] = [];
   serviceaffectes: IServiceAffecte[] = [];
   servicefrequentes: IServiceFrequente[] = [];
+  groupesSanguins = Object.keys(GroupeSanguin);
+  renderedBloodGroup: any;
+
+  // groupesSanguins:string[]= ['AP','AM','BP','BM','OP','OM','ABP','ABM',];
 
   editForm = this.fb.group({
     id: [],
-    matricule: [null, [Validators.required]],
+    matricule: [],
     prenoms: [null, [Validators.required]],
     nom: [null, [Validators.required]],
     intituleEmploye: [],
@@ -55,7 +60,7 @@ export class EmployeUpdateComponent implements OnInit {
     groupeSanguin: [],
     situationMatrimonial: [],
     sexe: [],
-    disponibilite: [],
+    disponibilite: [null, [Validators.required]],
     contrat: [],
     services: [],
     serviceFrequentes: [],
@@ -174,10 +179,12 @@ export class EmployeUpdateComponent implements OnInit {
 
   save(): void {
     this.isSaving = true;
+   // console.log('employe', this.createFromForm());
     const employe = this.createFromForm();
-    if (employe.id !== undefined) {
+        if (employe.id !== undefined) {
       this.subscribeToSaveResponse(this.employeService.update(employe));
     } else {
+            
       this.subscribeToSaveResponse(this.employeService.create(employe));
     }
   }
@@ -248,5 +255,35 @@ export class EmployeUpdateComponent implements OnInit {
       }
     }
     return option;
+  }
+
+  defineBloodGroup(bloodGroup: any): any{
+   
+    if(bloodGroup === 'AP'){
+      this.renderedBloodGroup ="A+";
+
+    } else if(bloodGroup === 'AM'){
+      this.renderedBloodGroup ="A-";
+    }
+    else if(bloodGroup === 'BP'){
+      this.renderedBloodGroup ="B+";
+    }
+    else if(bloodGroup === 'BM'){
+      this.renderedBloodGroup ="B-"
+    }
+    else if(bloodGroup === 'OP'){
+      this.renderedBloodGroup ="O+"
+    }
+    else if(bloodGroup === 'OM'){
+      this.renderedBloodGroup ="O-"
+    }
+    else if(bloodGroup === 'ABP'){
+      this.renderedBloodGroup ="AB+"
+    }
+    else if(bloodGroup === 'ABM'){
+      this.renderedBloodGroup ="AB-"
+    }
+   return this.renderedBloodGroup;
+
   }
 }

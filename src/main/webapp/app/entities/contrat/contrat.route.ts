@@ -40,6 +40,7 @@ export const contratRoute: Routes = [
     component: ContratComponent,
     data: {
       authorities: [Authority.USER],
+      defaultSort: 'id,asc',
       pageTitle: 'gpecmanagerApp.contrat.home.title',
     },
     canActivate: [UserRouteAccessService],

@@ -103,6 +103,10 @@ public class ContratQueryService extends QueryService<Contrat> {
             if (criteria.getTypeContrat() != null) {
                 specification = specification.and(buildSpecification(criteria.getTypeContrat(), Contrat_.typeContrat));
             }
+            if (criteria.getEmployeId() != null) {
+                specification = specification.and(buildSpecification(criteria.getEmployeId(),
+                    root -> root.join(Contrat_.employe, JoinType.LEFT).get(Employe_.id)));
+            }
         }
         return specification;
     }

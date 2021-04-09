@@ -2,7 +2,10 @@ package com.themalomars.gpecmanager.service.impl;
 
 import com.themalomars.gpecmanager.service.ContratService;
 import com.themalomars.gpecmanager.domain.Contrat;
+import com.themalomars.gpecmanager.domain.Employe;
 import com.themalomars.gpecmanager.repository.ContratRepository;
+import com.themalomars.gpecmanager.repository.EmployeRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,9 +26,11 @@ public class ContratServiceImpl implements ContratService {
     private final Logger log = LoggerFactory.getLogger(ContratServiceImpl.class);
 
     private final ContratRepository contratRepository;
+    private final EmployeRepository employeRepository;
 
-    public ContratServiceImpl(ContratRepository contratRepository) {
+    public ContratServiceImpl(ContratRepository contratRepository, EmployeRepository employeRepository) {
         this.contratRepository = contratRepository;
+        this.employeRepository = employeRepository;
     }
 
     @Override
@@ -41,7 +46,6 @@ public class ContratServiceImpl implements ContratService {
         return contratRepository.findAll(pageable);
     }
 
-
     @Override
     @Transactional(readOnly = true)
     public Optional<Contrat> findOne(Long id) {
@@ -54,4 +58,13 @@ public class ContratServiceImpl implements ContratService {
         log.debug("Request to delete Contrat : {}", id);
         contratRepository.deleteById(id);
     }
+
+    @Override
+    public void updateEmploye(Contrat contrat) {
+        log.debug(" updateEmploye Contrat: {}", contrat.getEmploye());
+        Employe employe = contrat.getEmploye();
+        employe.setContrat(contrat);
+        employeRepository.save(employe);
+    }
+
 }

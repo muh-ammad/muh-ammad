@@ -1,7 +1,9 @@
 package com.themalomars.gpecmanager.web.rest;
 
 import com.themalomars.gpecmanager.domain.Contrat;
+import com.themalomars.gpecmanager.domain.Employe;
 import com.themalomars.gpecmanager.service.ContratService;
+import com.themalomars.gpecmanager.service.EmployeService;
 import com.themalomars.gpecmanager.web.rest.errors.BadRequestAlertException;
 import com.themalomars.gpecmanager.service.dto.ContratCriteria;
 import com.themalomars.gpecmanager.service.ContratQueryService;
@@ -27,7 +29,8 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * REST controller for managing {@link com.themalomars.gpecmanager.domain.Contrat}.
+ * REST controller for managing
+ * {@link com.themalomars.gpecmanager.domain.Contrat}.
  */
 @RestController
 @RequestMapping("/api")
@@ -53,7 +56,9 @@ public class ContratResource {
      * {@code POST  /contrats} : Create a new contrat.
      *
      * @param contrat the contrat to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new contrat, or with status {@code 400 (Bad Request)} if the contrat has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
+     *         body the new contrat, or with status {@code 400 (Bad Request)} if the
+     *         contrat has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/contrats")
@@ -62,19 +67,25 @@ public class ContratResource {
         if (contrat.getId() != null) {
             throw new BadRequestAlertException("A new contrat cannot already have an ID", ENTITY_NAME, "idexists");
         }
+
         Contrat result = contratService.save(contrat);
-        return ResponseEntity.created(new URI("/api/contrats/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
-            .body(result);
+        // MAJ id_contrat dans employe
+        contratService.updateEmploye(result);
+        return ResponseEntity
+                .created(new URI("/api/contrats/" + result.getId())).headers(HeaderUtil
+                        .createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
+                .body(result);
     }
 
     /**
      * {@code PUT  /contrats} : Updates an existing contrat.
      *
      * @param contrat the contrat to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated contrat,
-     * or with status {@code 400 (Bad Request)} if the contrat is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the contrat couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated contrat, or with status {@code 400 (Bad Request)} if the
+     *         contrat is not valid, or with status
+     *         {@code 500 (Internal Server Error)} if the contrat couldn't be
+     *         updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/contrats")
@@ -84,9 +95,9 @@ public class ContratResource {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         Contrat result = contratService.save(contrat);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, contrat.getId().toString()))
-            .body(result);
+        return ResponseEntity.ok().headers(
+                HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, contrat.getId().toString()))
+                .body(result);
     }
 
     /**
@@ -94,13 +105,15 @@ public class ContratResource {
      *
      * @param pageable the pagination information.
      * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of contrats in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of contrats in body.
      */
     @GetMapping("/contrats")
     public ResponseEntity<List<Contrat>> getAllContrats(ContratCriteria criteria, Pageable pageable) {
         log.debug("REST request to get Contrats by criteria: {}", criteria);
         Page<Contrat> page = contratQueryService.findByCriteria(criteria, pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        HttpHeaders headers = PaginationUtil
+                .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
@@ -108,7 +121,8 @@ public class ContratResource {
      * {@code GET  /contrats/count} : count all the contrats.
      *
      * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count
+     *         in body.
      */
     @GetMapping("/contrats/count")
     public ResponseEntity<Long> countContrats(ContratCriteria criteria) {
@@ -120,7 +134,8 @@ public class ContratResource {
      * {@code GET  /contrats/:id} : get the "id" contrat.
      *
      * @param id the id of the contrat to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the contrat, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the contrat, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/contrats/{id}")
     public ResponseEntity<Contrat> getContrat(@PathVariable Long id) {
@@ -139,6 +154,8 @@ public class ContratResource {
     public ResponseEntity<Void> deleteContrat(@PathVariable Long id) {
         log.debug("REST request to delete Contrat : {}", id);
         contratService.delete(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.noContent()
+                .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
+                .build();
     }
 }

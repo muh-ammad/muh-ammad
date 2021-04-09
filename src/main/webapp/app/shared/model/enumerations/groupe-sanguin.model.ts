@@ -1,4 +1,4 @@
-export const enum GroupeSanguin {
+export  enum GroupeSanguin {
   AP = 'AP',
 
   AM = 'AM',

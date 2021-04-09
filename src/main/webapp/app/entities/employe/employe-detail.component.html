@@ -1,19 +1,22 @@
 <div class="row justify-content-center">
     <div class="col-2">
         <dd>
-            <div *ngIf="employe.photo" class="rounded-circle">
-                <a (click)="openFile(employe.photoContentType, employe.photo)">
-                    <img [src]="'data:' + employe.photoContentType + ';base64,' + employe.photo"
-                        style="max-width: 100%;" alt="employe image" />
+            <div *ngIf="employe?.photo">
+                <a (click)="openFile(employe?.photoContentType, employe?.photo)">
+                    <img [src]="'data:' + employe?.photoContentType + ';base64,' + employe?.photo"
+                        style="max-width: 100%; height: auto;" class="rounded" alt="employe image" />
                 </a>
             </div>
         </dd>
     </div>
     <div class="col-8">
         <div *ngIf="employe">
-            <h2><span jhiTranslate="gpecmanagerApp.employe.detail.title">Employe</span> {{ employe.id }}</h2>
+            <h2><span class="badge badge-light">{{ employe.intituleEmploye }}</span>
+                <span class="badge badge-secondary">{{ employe.matricule }}</span>
+                <span class="badge badge-primary">{{ employe.disponibilite }}</span>
+            </h2>
 
-            <hr>
+            <hr class="divider">
 
             <jhi-alert-error></jhi-alert-error>
 
@@ -47,7 +50,7 @@
                             <div class="col-md-4">
                                 <dt><span jhiTranslate="gpecmanagerApp.employe.dateNaissance">Date Naissance</span></dt>
                                 <dd>
-                                    <span>{{ employe.dateNaissance }}</span>
+                                    <span>{{ employe.dateNaissance | date:'dd-MM-yyyy' }}</span>
                                 </dd>
                             </div>
                             <div class="col-md-4">
@@ -87,18 +90,11 @@
                     </div>
 
                 </div>
+                <hr>
                 <div class="card">
                     <div class="card-header"></div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-4">
-                                <dt><span jhiTranslate="gpecmanagerApp.employe.disponibilite">Disponibilite</span></dt>
-                                <dd>
-                                    <span
-                                        jhiTranslate="{{ 'gpecmanagerApp.Disponibilite.' + employe.disponibilite }}">{{
-                                        employe.disponibilite }}</span>
-                                </dd>
-                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
@@ -114,19 +110,19 @@
                                 <dt><span jhiTranslate="gpecmanagerApp.employe.dateEmbauchement">Date
                                         Embauchement</span></dt>
                                 <dd>
-                                    <span>{{ employe.dateEmbauchement }}</span>
+                                    <span>{{ employe.dateEmbauchement | date:'dd-MM-yyyy' }}</span>
                                 </dd>
                             </div>
                             <div class="col-md-4">
                                 <dt><span jhiTranslate="gpecmanagerApp.employe.dateRetraite">Date Retraite</span></dt>
                                 <dd>
-                                    <span>{{ employe.dateRetraite }}</span>
+                                    <span>{{ employe.dateRetraite | date:'dd-MM-yyyy' }}</span>
                                 </dd>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                <hr>
                 <div class="card">
                     <div class="card-header"></div>
                     <div class="card-body">
@@ -153,6 +149,7 @@
                         </div>
                     </div>
                 </div>
+                <hr>
                 <div class="card">
                     <div class="card-header"></div>
                     <div class="card-body">
@@ -178,13 +175,13 @@
                             <div class="col-md-4">
                                 <dt><span jhiTranslate="gpecmanagerApp.employe.sexe">Sexe</span></dt>
                                 <dd>
-                                    <span jhiTranslate="{{ 'gpecmanagerApp.Sexe.' + employe.sexe }}">{{ employe.sexe
-                                        }}</span>
+                                    <span jhiTranslate="{{ 'gpecmanagerApp.Sexe.' + employe.sexe }}">{{ employe.sexe }}</span>
                                 </dd>
                             </div>
                         </div>
                     </div>
                 </div>
+                <hr>
                 <div class="card">
                     <div class="card-header"></div>
                     <div class="card-body">
@@ -214,7 +211,7 @@
                 </div>
             </dl>
             <div class="text-right">
-                <button type="submit" (click)="previousState()" class="btn btn-info">
+                <button type="submit" (click)="previousState()" class="btn btn-light">
                     <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
                 </button>
                 <button type="button" [routerLink]="['/employe', employe.id, 'edit']" class="btn btn-primary">

@@ -47,6 +47,7 @@ describe('Contrat e2e test', () => {
       contratUpdatePage.setDateFinInput('01/01/2001' + protractor.Key.TAB + '02:30AM'),
       contratUpdatePage.niveauEtudeSelectLastOption(),
       contratUpdatePage.typeContratSelectLastOption(),
+      contratUpdatePage.employeSelectLastOption(),
     ]);
 
     expect(await contratUpdatePage.getNumeroContratInput()).to.eq(

@@ -2,6 +2,7 @@ package com.themalomars.gpecmanager.web.rest;
 
 import com.themalomars.gpecmanager.GpecmanagerApp;
 import com.themalomars.gpecmanager.domain.Contrat;
+import com.themalomars.gpecmanager.domain.Employe;
 import com.themalomars.gpecmanager.repository.ContratRepository;
 import com.themalomars.gpecmanager.service.ContratService;
 import com.themalomars.gpecmanager.service.dto.ContratCriteria;
@@ -686,6 +687,26 @@ public class ContratResourceIT {
         // Get all the contratList where typeContrat is null
         defaultContratShouldNotBeFound("typeContrat.specified=false");
     }
+
+    @Test
+    @Transactional
+    public void getAllContratsByEmployeIsEqualToSomething() throws Exception {
+        // Initialize the database
+        contratRepository.saveAndFlush(contrat);
+        Employe employe = EmployeResourceIT.createEntity(em);
+        em.persist(employe);
+        em.flush();
+        contrat.setEmploye(employe);
+        contratRepository.saveAndFlush(contrat);
+        Long employeId = employe.getId();
+
+        // Get all the contratList where employe equals to employeId
+        defaultContratShouldBeFound("employeId.equals=" + employeId);
+
+        // Get all the contratList where employe equals to employeId + 1
+        defaultContratShouldNotBeFound("employeId.equals=" + (employeId + 1));
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned.
      */

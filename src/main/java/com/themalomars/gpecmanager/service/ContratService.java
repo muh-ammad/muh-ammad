@@ -1,6 +1,7 @@
 package com.themalomars.gpecmanager.service;
 
 import com.themalomars.gpecmanager.domain.Contrat;
+import com.themalomars.gpecmanager.domain.Employe;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,4 +44,6 @@ public interface ContratService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    void updateEmploye(Contrat contrat);
 }

@@ -53,6 +53,10 @@ public class Contrat implements Serializable {
     @Column(name = "type_contrat", nullable = false)
     private TypeContrat typeContrat;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Employe employe;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -138,6 +142,19 @@ public class Contrat implements Serializable {
 
     public void setTypeContrat(TypeContrat typeContrat) {
         this.typeContrat = typeContrat;
+    }
+
+    public Employe getEmploye() {
+        return employe;
+    }
+
+    public Contrat employe(Employe employe) {
+        this.employe = employe;
+        return this;
+    }
+
+    public void setEmploye(Employe employe) {
+        this.employe = employe;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

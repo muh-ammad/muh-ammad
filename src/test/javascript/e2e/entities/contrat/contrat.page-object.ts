@@ -36,6 +36,8 @@ export class ContratUpdatePage {
   niveauEtudeSelect = element(by.id('field_niveauEtude'));
   typeContratSelect = element(by.id('field_typeContrat'));
 
+  employeSelect = element(by.id('field_employe'));
+
   async getPageTitle(): Promise<string> {
     return this.pageTitle.getAttribute('jhiTranslate');
   }
@@ -94,6 +96,22 @@ export class ContratUpdatePage {
 
   async typeContratSelectLastOption(): Promise<void> {
     await this.typeContratSelect.all(by.tagName('option')).last().click();
+  }
+
+  async employeSelectLastOption(): Promise<void> {
+    await this.employeSelect.all(by.tagName('option')).last().click();
+  }
+
+  async employeSelectOption(option: string): Promise<void> {
+    await this.employeSelect.sendKeys(option);
+  }
+
+  getEmployeSelect(): ElementFinder {
+    return this.employeSelect;
+  }
+
+  async getEmployeSelectedOption(): Promise<string> {
+    return await this.employeSelect.element(by.css('option:checked')).getText();
   }
 
   async save(): Promise<void> {
